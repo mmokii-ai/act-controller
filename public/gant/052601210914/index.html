@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>План контракта — ИП Султанмагомедов Арасхан Зейналабидович</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f3f4f6;color:#111;font-size:14px}
+/* Шапка */
+.hdr{background:#fff;border-bottom:1px solid #e5e7eb;padding:16px 24px}
+.hdr h1{font-size:16px;font-weight:600;margin-bottom:2px}
+.hdr p{font-size:12px;color:#6b7280;margin-bottom:6px}
+.meta{display:flex;gap:8px;flex-wrap:wrap}
+.badge{font-size:11px;background:#f3f4f6;padding:2px 8px;border-radius:10px;color:#374151;border:1px solid #e5e7eb}
+/* Прогресс */
+.prog-bar{height:3px;background:#e5e7eb}
+.prog-fill{height:100%;background:linear-gradient(90deg,#10b981,#3b82f6);transition:width .4s;border-radius:0 2px 2px 0}
+.stat-row{display:flex;align-items:center;justify-content:space-between;padding:5px 24px;background:#fff;border-bottom:1px solid #e5e7eb;font-size:11px;color:#6b7280}
+/* Управление */
+.controls{padding:10px 24px;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.controls label{font-size:12px;color:#6b7280}
+.controls input[type=date]{font-size:12px;border:1px solid #d1d5db;border-radius:5px;padding:3px 7px;color:#111}
+/* Легенда */
+.legend{display:flex;gap:12px;flex-wrap:wrap;padding:7px 24px;background:#fff;border-bottom:1px solid #e5e7eb}
+.leg{display:flex;align-items:center;gap:4px;font-size:11px;color:#6b7280}
+.leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+/* Таблица */
+.wrap{overflow-x:auto;padding:16px}
+table{border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);min-width:700px;width:100%}
+th{font-size:9px;font-weight:500;color:#9ca3af;padding:5px 6px;background:#f9fafb;border-bottom:1px solid #e5e7eb;white-space:nowrap}
+.th-task{text-align:left;min-width:240px;position:sticky;left:0;background:#f9fafb;z-index:3}
+.th-cb{width:28px;position:sticky;left:240px;background:#f9fafb;z-index:3;text-align:center}
+.th-d{text-align:center;min-width:24px;font-size:8px;padding:3px 1px;border-left:1px solid #f0f0f0}
+td{vertical-align:middle;border-bottom:1px solid #f3f4f6}
+.td-task{position:sticky;left:0;background:#fff;z-index:2;border-right:1px solid #e5e7eb;min-width:240px}
+.td-cb{position:sticky;left:240px;background:#fff;z-index:2;text-align:center;padding:0 4px;border-right:1px solid #f3f4f6;width:28px}
+.td-d{padding:1px;border-left:1px solid #f9f9f9}
+/* Строки */
+.row-phase td{background:#1e293b;color:#64748b;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px}
+.row-phase .td-task,.row-phase .td-cb{background:#1e293b;border-color:#334155}
+.row-group{cursor:pointer}
+.row-group td{background:#f8fafc}
+.row-group .td-task,.row-group .td-cb{background:#f8fafc}
+.row-group:hover td,.row-group:hover .td-task,.row-group:hover .td-cb{background:#eef2ff}
+.row-sub td{background:#fff}
+.row-sub.hidden{display:none}
+.row-sub.done .tname{text-decoration:line-through;color:#9ca3af}
+.row-sub.done .bar{opacity:.25}
+/* Ячейки задач */
+.task-cell{padding:5px 10px;display:flex;align-items:flex-start;gap:6px}
+.toggle{font-size:8px;color:#94a3b8;flex-shrink:0;margin-top:3px;transition:transform .15s;user-select:none;line-height:1}
+.toggle.open{transform:rotate(90deg)}
+.sub-pad{padding-left:26px}
+.tname{font-size:11px;line-height:1.4;color:#1e293b}
+.tname.gname{font-weight:600}
+.tnote{font-size:10px;color:#9ca3af;margin-top:1px;line-height:1.3}
+/* Чекбоксы */
+.cb{width:13px;height:13px;cursor:pointer;accent-color:#10b981;flex-shrink:0;margin-top:2px}
+/* Бары */
+.bar-wrap{display:flex;align-items:center;height:18px;padding:0 1px}
+.bar{height:10px;border-radius:3px;width:100%}
+.bar-g{height:4px;opacity:.5}
+/* Выходные / сегодня */
+.we{background:#fafafa!important}
+.tod{background:rgba(239,68,68,.06)!important;border-left:2px solid rgba(239,68,68,.3)!important}
+/* CTA */
+.cta{margin:12px 24px 24px;padding:16px 20px;background:linear-gradient(135deg,#eff6ff,#f0fdf4);border:1px solid #bfdbfe;border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cta-text{font-size:13px;color:#1e40af;line-height:1.5}
+.cta-text strong{display:block;font-size:14px;margin-bottom:2px}
+.cta a{background:#2563eb;color:#fff;padding:10px 20px;border-radius:7px;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;box-shadow:0 1px 3px rgba(37,99,235,.3)}
+.cta a:hover{background:#1d4ed8}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <h1>Организация мероприятий «Доблесть гор» для участников СВО</h1>
+  <p>ИП Султанмагомедов Арасхан Зейналабидович</p>
+  <div class="meta">
+    <span class="badge">№ ЭЗК04-26</span>
+    <span class="badge">📅 Подписан: 2026-03-19</span>
+    <span class="badge">🎯 Мероприятие: 2026-03-29</span>
+    <span class="badge">⏰ Исполнение до: 2026-06-30</span>
+  </div>
+</div>
+<div class="prog-bar"><div class="prog-fill" id="prog" style="width:0%"></div></div>
+<div class="stat-row">
+  <span id="stat">Укажите даты для отображения Ганта</span>
+  <span id="overdue" style="color:#ef4444;font-weight:500"></span>
+</div>
+<div class="controls">
+  <label>📝 Дата подписания:</label>
+  <input type="date" id="sign-date" value="2026-03-19">
+  <label>🎪 Дата мероприятия:</label>
+  <input type="date" id="event-date" value="2026-03-29">
+</div>
+<div class="legend">
+  <span class="leg"><span class="leg-dot" style="background:#3b82f6"></span>От подписания</span>
+  <span class="leg"><span class="leg-dot" style="background:#10b981"></span>От мероприятия</span>
+  <span class="leg"><span class="leg-dot" style="background:#f59e0b"></span>Данные от заказчика</span>
+  <span class="leg"><span class="leg-dot" style="background:#ef4444"></span>Жёсткий дедлайн</span>
+  <span class="leg"><span class="leg-dot" style="background:#8b5cf6"></span>Финал/документы</span>
+</div>
+<div class="wrap"><div id="gantt"></div></div>
+<div class="cta">
+  <div class="cta-text">
+    <strong>Хотите такой план по каждому вашему контракту?</strong>
+    Загрузите договор — получите готовый акт и чек-лист документов за 2 минуты.
+  </div>
+  <a href="https://act-controller.vercel.app?inn=052601210914" target="_blank">Попробовать бесплатно →</a>
+</div>
+<script>
+const PH=[{"name": "Старт", "groups": [{"id": "g1", "name": "Обеспечение исполнения контракта", "offset_days": 0, "start_ref": "sign_date", "duration_days": 2, "color_type": "deadline", "note": "780 000 руб. (10% от цены контракта). Перечислить на счёт заказчика: ЕКС 40102810945370000069, БИК 018209001, л/с 05032039390, ОКЦ №11 ЮГУ Банка России // УФК по Республике Дагестан", "subtasks": [{"id": "g1s1", "name": "Перечислить обеспечение 780 000 руб. на счёт заказчика", "offset_days": 0, "start_ref": "sign_date", "duration_days": 1, "color_type": "deadline", "note": "ЕКС 40102810945370000069, КС 03222643820000000300, л/с 05032039390, БИК 018209001. Назначение: обеспечение по ЭЗК1 (извещение 0303200029926000014)"}]}]}, {"name": "Закупки и подготовка", "groups": [{"id": "g2", "name": "Услуга: Размещение участников (35 стандарт + 10 люкс)", "offset_days": -14, "start_ref": "event_date", "duration_days": 5, "color_type": "auto", "note": "45 номеров, комплекс не далее 30 км от г. Махачкала, заселение до 10:00 29.03.2026, выселение не ранее 23:59 10.04.2026", "subtasks": [{"id": "g2s1", "name": "Найти комплекс/гостиницу, проверить соответствие ТЗ", "offset_days": -14, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "Классификация по Постановлению №1951, реестр объектов классификации, парковка 80+ мест, конференц-зал 150+ мест, бассейн, СПА, хамам, сауна"}, {"id": "g2s2", "name": "Согласовать выбор комплекса с заказчиком письменно", "offset_days": -10, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Получить письменное подтверждение от заказчика"}, {"id": "g2s3", "name": "Подписать договор с комплексом, получить документы для акта", "offset_days": -7, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Договор на 45 номеров с 29.03 по 10.04.2026"}, {"id": "g2s4", "name": "Передать список участников (ФИО, даты рождения, паспорта) в комплекс", "offset_days": -3, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Исполнитель самостоятельно осуществляет заселение всех участников"}, {"id": "g2s5", "name": "Проконтролировать готовность номерного фонда накануне", "offset_days": -1, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Проверить оснащение номеров, постельное бельё, туалетные принадлежности, холодильники, чайники"}]}, {"id": "g3", "name": "Услуга: Питание (3-разовое, шведский стол)", "offset_days": -14, "start_ref": "event_date", "duration_days": 5, "color_type": "auto", "note": "45 участников, ежедневно завтрак/обед/ужин, кофе-брейки 2 раза в день на конференциях", "subtasks": [{"id": "g3s1", "name": "Найти поставщика питания/ресторан, проверить соответствие ТЗ", "offset_days": -14, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "Меню: шведский стол завтрак/обед/ужин по ТЗ, кофе-брейки с сэндвичами, выпечкой, фруктами, кофе"}, {"id": "g3s2", "name": "Согласовать меню и поставщика с заказчиком письменно", "offset_days": -10, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Включая питание на выездных мероприятиях"}, {"id": "g3s3", "name": "Подписать договор с поставщиком питания, получить документы для акта", "offset_days": -7, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Период: 29.03–10.04.2026"}, {"id": "g3s4", "name": "Передать точное кол-во участников и график кофе-брейков поставщику", "offset_days": -3, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Время кофе-брейков согласовать с заказчиком"}, {"id": "g3s5", "name": "Проконтролировать готовность питания накануне", "offset_days": -1, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Убедиться в наличии всех позиций меню по ТЗ"}]}, {"id": "g4", "name": "Услуга: Транспорт (выездные мероприятия — 3 выезда)", "offset_days": -14, "start_ref": "event_date", "duration_days": 5, "color_type": "auto", "note": "3 выездных мероприятия в пределах Республики Дагестан, заказчик направляет заявку не менее чем за 2 дня", "subtasks": [{"id": "g4s1", "name": "Найти транспортного поставщика, проверить соответствие ТЗ", "offset_days": -14, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "Автобусы/микроавтобусы для 45 чел, 3 выезда по РД"}, {"id": "g4s2", "name": "Согласовать транспортного поставщика с заказчиком письменно", "offset_days": -10, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Уточнить предварительный маршрут и даты выездов"}, {"id": "g4s3", "name": "Подписать договор с перевозчиком, получить документы для акта", "offset_days": -7, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "3 рейса туда-обратно"}, {"id": "g4s4", "name": "Передать маршруты и список участников перевозчику", "offset_days": -3, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Заказчик направляет заявку не менее чем за 2 дня до каждого выезда"}, {"id": "g4s5", "name": "Проконтролировать готовность транспорта накануне", "offset_days": -1, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Проверить наличие транспорта и водителей"}]}, {"id": "g5", "name": "Услуга: Конференц-зал и оборудование", "offset_days": -14, "start_ref": "event_date", "duration_days": 5, "color_type": "auto", "note": "Зал 190+ кв.м, 150+ мест, 35 ноутбуков, проектор, 2 микрофона, флипчарт×7, ежедневно 8 ч", "subtasks": [{"id": "g5s1", "name": "Проверить наличие конференц-зала в комплексе, соответствие ТЗ", "offset_days": -14, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "Сцена, трибуна, акустика, проектор, экран, 35 ноутбуков, кликер, WiFi, стойка регистрации"}, {"id": "g5s2", "name": "Согласовать конференц-зал и оборудование с заказчиком письменно", "offset_days": -10, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Подтвердить формат рассадки (театральная / круглый стол)"}, {"id": "g5s3", "name": "Подписать договор/подтвердить бронь зала, получить документы для акта", "offset_days": -7, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Ежедневно с 29.03 по 10.04"}, {"id": "g5s4", "name": "Передать заказчику график конференций и формат мероприятий", "offset_days": -3, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Заказчик знакомит с форматом не менее чем за 2 дня до каждой конференции"}, {"id": "g5s5", "name": "Проконтролировать готовность зала и оборудования накануне", "offset_days": -1, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Проверить все 35 ноутбуков, проектор, микрофоны, флипчарты, ПО для презентаций"}]}, {"id": "g6", "name": "Услуга: Охрана объекта", "offset_days": -14, "start_ref": "event_date", "duration_days": 5, "color_type": "auto", "note": "Пропускной режим, видеонаблюдение 24/7, антитеррористическая защита, лицензированные охранники", "subtasks": [{"id": "g6s1", "name": "Найти охранную организацию/убедиться в наличии охраны комплекса", "offset_days": -14, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "Лицензированные охранники, видеонаблюдение 24/7, пожарная сигнализация, СКУД"}, {"id": "g6s2", "name": "Согласовать план охраны с заказчиком письменно", "offset_days": -10, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Подтвердить пропускной режим и антитеррористические меры"}, {"id": "g6s3", "name": "Подписать договор с охранной организацией, получить документы для акта", "offset_days": -7, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Период охраны: 29.03–10.04.2026"}, {"id": "g6s4", "name": "Передать список участников и персонала для пропускного режима", "offset_days": -3, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Согласовать порядок пропуска участников"}, {"id": "g6s5", "name": "Проконтролировать готовность охраны накануне", "offset_days": -1, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Проверить работу видеонаблюдения, сигнализации, расстановку постов"}]}, {"id": "g7", "name": "Закупка: Бейджи с лентой (60 шт., с персонализацией)", "offset_days": -16, "start_ref": "event_date", "duration_days": 14, "color_type": "auto", "note": "60 шт., индивидуальный заказ, 13×9 см, лента синяя/серая, Pantone 534, QR-код, 24 275.86 руб.", "subtasks": [{"id": "g7s1", "name": "Найти поставщика бейджей, собрать 3 КП", "offset_days": -16, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "60 шт., размер 13×9 см, лента репсовая 15 мм, Pantone 534, карабины, QR-код на обороте"}, {"id": "g7s2", "name": "Получить логотип/макет от заказчика", "offset_days": -13, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Логотип программы «Доблесть гор», QR-код, контактный телефон и email программы, распределение УЧАСТНИК/ОРГАНИЗАТОР/ЭКСПЕРТ"}, {"id": "g7s3", "name": "Согласовать образец бейджа с заказчиком письменно", "offset_days": -11, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Цвет ленты (синий/серый), количество каждой категории (УЧАСТНИК/ОРГАНИЗАТОР/ЭКСПЕРТ)"}, {"id": "g7s4", "name": "Подписать договор с поставщиком, получить УПД/накладную для акта", "offset_days": -9, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Сумма: 24 275.86 руб."}, {"id": "g7s5", "name": "Принять бейджи, проверить количество и соответствие ТЗ", "offset_days": -4, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Проверить цвет, размер, QR-код, надписи, карабины"}, {"id": "g7s6", "name": "Доставить бейджи на место проведения мероприятия", "offset_days": -2, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "По ТЗ: не позднее чем за 2 дня до заселения"}]}, {"id": "g8", "name": "Закупка: Блокноты (100 шт., с персонализацией)", "offset_days": -16, "start_ref": "event_date", "duration_days": 14, "color_type": "auto", "note": "100 шт., А5, 60 л., спираль, картон 210 г/м2, логотип программы, 41 146.49 руб.", "subtasks": [{"id": "g8s1", "name": "Найти поставщика блокнотов, собрать 3 КП", "offset_days": -16, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "100 шт., А5, 60 л., клетка, спираль по верхнему краю, картон 210 г/м2, офсет 60 г/м2, белый RAL 9003"}, {"id": "g8s2", "name": "Получить логотип/макет от заказчика", "offset_days": -13, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Логотип программы «Доблесть гор» для нанесения на обложку (62×98 мм) и на каждый лист"}, {"id": "g8s3", "name": "Согласовать образец блокнота с заказчиком письменно", "offset_days": -11, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Подтвердить макет, расположение логотипа"}, {"id": "g8s4", "name": "Подписать договор с поставщиком, получить УПД/накладную для акта", "offset_days": -9, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Сумма: 41 146.49 руб."}, {"id": "g8s5", "name": "Принять блокноты, проверить количество и соответствие ТЗ", "offset_days": -4, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Проверить логотип, расположение крепления, плотность бумаги"}, {"id": "g8s6", "name": "Доставить блокноты на место проведения мероприятия", "offset_days": -2, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "По ТЗ: не позднее чем за 2 дня до заселения"}]}, {"id": "g9", "name": "Закупка: Бумага для флипчарта (10 пачек)", "offset_days": -16, "start_ref": "event_date", "duration_days": 14, "color_type": "auto", "note": "10 пачек, 675×980 мм, 80 г/кв.м, 10 л./пачка, перфорация, 3 969.47 руб.", "subtasks": [{"id": "g9s1", "name": "Найти поставщика бумаги для флипчарта, собрать 3 КП", "offset_days": -16, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "10 пачек, 675×980 мм, 80 г/кв.м, отверстия для крепления, перфорация на отрыв"}, {"id": "g9s2", "name": "Согласовать образец с заказчиком письменно", "offset_days": -11, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Убедиться в совместимости с 7 флипчартами в зале"}, {"id": "g9s3", "name": "Подписать договор с поставщиком, получить УПД/накладную для акта", "offset_days": -9, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Сумма: 3 969.47 руб."}, {"id": "g9s4", "name": "Принять бумагу для флипчарта, проверить количество и соответствие ТЗ", "offset_days": -4, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "10 пачек × 10 листов"}, {"id": "g9s5", "name": "Доставить бумагу для флипчарта на место проведения мероприятия", "offset_days": -2, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Разложить по 7 флипчартам в конференц-зале"}]}, {"id": "g10", "name": "Закупка: Маркеры для флипчарта (20 шт.)", "offset_days": -16, "start_ref": "event_date", "duration_days": 14, "color_type": "auto", "note": "20 шт., 4 цвета, круглый наконечник 2–4 мм, 2 322.14 руб.", "subtasks": [{"id": "g10s1", "name": "Найти поставщика маркеров для флипчарта, собрать 3 КП", "offset_days": -16, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "20 шт., зелёный/красный/синий/чёрный, толщина 2–4 мм, быстросохнущие"}, {"id": "g10s2", "name": "Согласовать образец с заказчиком письменно", "offset_days": -11, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Подтвердить наличие всех 4 цветов"}, {"id": "g10s3", "name": "Подписать договор с поставщиком, получить УПД/накладную для акта", "offset_days": -9, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Сумма: 2 322.14 руб."}, {"id": "g10s4", "name": "Принять маркеры, проверить количество и соответствие ТЗ", "offset_days": -4, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "20 шт., проверить 4 цвета, плотность колпачков"}, {"id": "g10s5", "name": "Доставить маркеры на место проведения мероприятия", "offset_days": -2, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Разложить по флипчартам в конференц-зале"}]}, {"id": "g11", "name": "Закупка: Ручки канцелярские (100 шт.)", "offset_days": -16, "start_ref": "event_date", "duration_days": 14, "color_type": "auto", "note": "100 шт., шариковые, синие, 0.3 мм, пластик, 3 473.28 руб.", "subtasks": [{"id": "g11s1", "name": "Найти поставщика ручек, собрать 3 КП", "offset_days": -16, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "100 шт., шариковые, синие, 0.3 мм, рифлёная зона захвата, колпачок с клипом"}, {"id": "g11s2", "name": "Согласовать образец с заказчиком письменно", "offset_days": -11, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Подтвердить модель ручки"}, {"id": "g11s3", "name": "Подписать договор с поставщиком, получить УПД/накладную для акта", "offset_days": -9, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Сумма: 3 473.28 руб."}, {"id": "g11s4", "name": "Принять ручки, проверить количество и соответствие ТЗ", "offset_days": -4, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "100 шт., проверить цвет чернил и колпачков"}, {"id": "g11s5", "name": "Доставить ручки на место проведения мероприятия", "offset_days": -2, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Раздать участникам вместе с блокнотами"}]}, {"id": "g12", "name": "Закупка: Батарейки AA (20 шт.)", "offset_days": -16, "start_ref": "event_date", "duration_days": 14, "color_type": "auto", "note": "20 шт., 1.5В, щелочные, блистер по 2 шт., 1 190.84 руб.", "subtasks": [{"id": "g12s1", "name": "Найти поставщика батареек AA, собрать 3 КП", "offset_days": -16, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "20 шт., 1.5В AA, щелочные, блистер по 2 шт."}, {"id": "g12s2", "name": "Согласовать образец с заказчиком письменно", "offset_days": -11, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Подтвердить марку/производителя"}, {"id": "g12s3", "name": "Подписать договор с поставщиком, получить УПД/накладную для акта", "offset_days": -9, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Сумма: 1 190.84 руб."}, {"id": "g12s4", "name": "Принять батарейки, проверить количество и соответствие ТЗ", "offset_days": -4, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "20 шт. в блистерах по 2 шт."}, {"id": "g12s5", "name": "Доставить батарейки на место проведения мероприятия", "offset_days": -2, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Для пультов, кликера и другого оборудования"}]}, {"id": "g13", "name": "Закупка: Бумага офисная А4 (5 пачек)", "offset_days": -16, "start_ref": "event_date", "duration_days": 14, "color_type": "auto", "note": "5 пачек × 500 л., А4, 80 г/м2, марка С, белизна 150, ГОСТ Р 57641-2017, 1 736.64 руб.", "subtasks": [{"id": "g13s1", "name": "Найти поставщика офисной бумаги А4, собрать 3 КП", "offset_days": -16, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "5 пачек, А4, 500 л., 80 г/м2, марка С, ГОСТ Р 57641-2017, влагостойкая упаковка"}, {"id": "g13s2", "name": "Согласовать образец с заказчиком письменно", "offset_days": -11, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Подтвердить марку бумаги"}, {"id": "g13s3", "name": "Подписать договор с поставщиком, получить УПД/накладную для акта", "offset_days": -9, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Сумма: 1 736.64 руб."}, {"id": "g13s4", "name": "Принять бумагу А4, проверить количество и соответствие ТЗ", "offset_days": -4, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "5 пачек, проверить целостность упаковки"}, {"id": "g13s5", "name": "Доставить бумагу А4 на место проведения мероприятия", "offset_days": -2, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Для принтеров и ноутбуков в конференц-зале"}]}, {"id": "g14", "name": "Закупка: Футболки с логотипом (45 шт., с персонализацией)", "offset_days": -16, "start_ref": "event_date", "duration_days": 14, "color_type": "auto", "note": "45 шт. (M×6, L×11, XL×21, 2XL×4, 3XL×1, 4XL×2), чёрные, логотип DTF, 214 351.15 руб.", "subtasks": [{"id": "g14s1", "name": "Найти поставщика футболок с нанесением DTF, собрать 3 КП", "offset_days": -16, "start_ref": "event_date", "duration_days": 2, "color_type": "auto", "note": "45 шт., чёрные, натуральное трикотажное полотно, нанесение DTF на грудь и спину"}, {"id": "g14s2", "name": "Получить логотип/макет от заказчика", "offset_days": -13, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Логотип программы «Доблесть гор» для нанесения на левую грудь и спину"}, {"id": "g14s3", "name": "Согласовать образец футболки с заказчиком письменно", "offset_days": -11, "start_ref": "event_date", "duration_days": 1, "color_type": "user_input", "note": "Согласовать одну модель перед нанесением на все 45 шт."}, {"id": "g14s4", "name": "Подписать договор с поставщиком, получить УПД/накладную для акта", "offset_days": -9, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Сумма: 214 351.15 руб. (M 28 580.15 + L 52 396.95 + XL 100 030.53 + 2XL 19 053.44 + 3XL 4 763.36 + 4XL 9 526.72)"}, {"id": "g14s5", "name": "Принять футболки, проверить количество и соответствие ТЗ", "offset_days": -4, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Проверить все 6 размеров, качество нанесения логотипа, длину рукава"}, {"id": "g14s6", "name": "Доставить футболки на место проведения мероприятия", "offset_days": -2, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "По ТЗ: не позднее чем за 2 дня до заселения"}]}]}, {"name": "Исполнение", "groups": [{"id": "g15", "name": "Проведение мероприятия (29.03–10.04.2026)", "offset_days": 0, "start_ref": "event_date", "duration_days": 13, "color_type": "auto", "note": "45 участников СВО, комплекс в Махачкале, 13 дней, конференции ежедневно 8 ч, 3 выездных мероприятия", "subtasks": [{"id": "g15s1", "name": "Заселить всех участников, выдать бейджи, блокноты, ручки, футболки", "offset_days": 0, "start_ref": "event_date", "duration_days": 1, "color_type": "auto", "note": "Заселение до 10:00, исполнитель самостоятельно осуществляет процесс заселения"}, {"id": "g15s2", "name": "Ежедневный контроль: питание, конференции, техподдержка", "offset_days": 0, "start_ref": "event_date", "duration_days": 12, "color_type": "auto", "note": "3-разовое питание, 2 кофе-брейка, конференции 8 ч/день, техподдержка оборудования"}, {"id": "g15s3", "name": "Организация выездных мероприятий (3 выезда по заявкам заказчика)", "offset_days": 0, "start_ref": "event_date", "duration_days": 12, "color_type": "user_input", "note": "Заказчик направляет заявку не менее чем за 2 дня, питание и транспорт за счёт исполнителя"}]}]}, {"name": "Финал", "groups": [{"id": "g16", "name": "Закрытие и сдача-приёмка", "offset_days": 1, "start_ref": "event_date", "duration_days": 14, "color_type": "final", "note": "Оплата в течение 7 рабочих дней с даты подписания акта заказчиком", "subtasks": [{"id": "g16s1", "name": "Собрать закрывающие документы от всех субподрядчиков (акты, УПД, накладные)", "offset_days": 1, "start_ref": "event_date", "duration_days": 2, "color_type": "final", "note": "Комплекс, питание, транспорт, охрана, поставщики товаров"}, {"id": "g16s2", "name": "Подписать итоговый акт приёмки с заказчиком", "offset_days": 3, "start_ref": "event_date", "duration_days": 1, "color_type": "final", "note": "Исполнитель формирует документ о приёмке в ЕИС не позднее 2 рабочих дней после окончания услуг"}, {"id": "g16s3", "name": "Разместить документ о приёмке в ЕИС, подписать ЭЦП", "offset_days": 4, "start_ref": "event_date", "duration_days": 1, "color_type": "deadline", "note": "ИКЗ: 262054101900905720100100220010000244, усиленная КЭП"}, {"id": "g16s4", "name": "Проконтролировать поступление оплаты (7 рабочих дней)", "offset_days": 5, "start_ref": "event_date", "duration_days": 10, "color_type": "final", "note": "7 800 000 руб. на р/с 40802810906800134778, Филиал «Центральный» банка ВТБ (ПАО), БИК 044525411"}]}]}];
+const INN="052601210914";
+const SK="g_"+INN;
+const C={auto:"#3b82f6",user_input:"#f59e0b",deadline:"#ef4444",event:"#10b981",final:"#8b5cf6"};
+const addD=(d,n)=>{const r=new Date(d);r.setDate(r.getDate()+n);return r;};
+const isWE=d=>d.getDay()===0||d.getDay()===6;
+const isToday=d=>d.toDateString()===new Date().toDateString();
+const isPast=d=>d<new Date()&&!isToday(d);
+function gc(g){
+  if(g.color_type==="deadline") return C.deadline;
+  if(g.color_type==="user_input") return C.user_input;
+  if(g.color_type==="final") return C.final;
+  if(g.start_ref==="event_date") return C.event;
+  return C.auto;
+}
+function gd(item,sd,ed,end){
+  const m={sign_date:sd,event_date:ed,end_date:end};
+  const r=m[item.start_ref];if(!r)return null;
+  const s=addD(r,item.offset_days||0);
+  return{s,e:addD(s,Math.max(0,(item.duration_days||1)-1))};
+}
+function ld(){try{return JSON.parse(localStorage.getItem(SK)||"{}")}catch{return{}}}
+function sv(d){localStorage.setItem(SK,JSON.stringify(d))}
+window.tog=id=>{
+  const btn=document.getElementById("t"+id);
+  const open=btn.classList.contains("open");
+  document.querySelectorAll(".s"+id).forEach(r=>r.classList.toggle("hidden",open));
+  btn.classList.toggle("open",!open);
+};
+window.togSub=(sid,cb)=>{
+  document.getElementById("r"+sid)?.classList.toggle("done",cb.checked);
+  const d=ld();d[sid]=cb.checked;sv(d);
+  const gid=cb.dataset.gid;
+  const all=document.querySelectorAll(`.csub[data-gid="${gid}"]`);
+  const chk=document.querySelectorAll(`.csub[data-gid="${gid}"]:checked`);
+  const gcb=document.getElementById("cg"+gid);
+  if(gcb){gcb.indeterminate=chk.length>0&&chk.length<all.length;gcb.checked=chk.length===all.length;}
+  upd();
+};
+window.togGrp=(gid,cb)=>{
+  const d=ld();
+  document.querySelectorAll(`.csub[data-gid="${gid}"]`).forEach(s=>{
+    s.checked=cb.checked;
+    document.getElementById("r"+s.dataset.sid)?.classList.toggle("done",cb.checked);
+    d[s.dataset.sid]=cb.checked;
+  });
+  sv(d);upd();
+};
+function upd(){
+  const all=document.querySelectorAll(".csub");
+  const done=document.querySelectorAll(".csub:checked");
+  const pct=all.length?Math.round(done.length/all.length*100):0;
+  document.getElementById("prog").style.width=pct+"%";
+  document.getElementById("stat").textContent=`${done.length} из ${all.length} подзадач выполнено (${pct}%)`;
+}
+function build(){
+  const sv2=document.getElementById("sign-date").value;
+  const ev=document.getElementById("event-date").value;
+  const sd=sv2?new Date(sv2):null;
+  const ed=ev?new Date(ev):("2026-03-29"?new Date("2026-03-29"):null);
+  const endS="2026-06-30";
+  const end=endS?new Date(endS):(sd?addD(sd,120):null);
+  const wrap=document.getElementById("gantt");
+  if(!sd){wrap.innerHTML='<p style="padding:24px;color:#9ca3af;text-align:center">👆 Укажите дату подписания контракта для отображения плана</p>';upd();return;}
+
+  // Диапазон дат
+  const allD=[sd];
+  if(end)allD.push(end);if(ed)allD.push(ed);
+  PH.forEach(ph=>ph.groups.forEach(g=>{
+    const d=gd(g,sd,ed,end);if(d){allD.push(d.s,d.e);}
+    (g.subtasks||[]).forEach(s=>{const ds=gd(s,sd,ed,end);if(ds){allD.push(ds.s,ds.e);}}); 
+  }));
+  const minD=new Date(Math.min(...allD));minD.setDate(minD.getDate()-2);
+  const maxD=new Date(Math.max(...allD));maxD.setDate(maxD.getDate()+4);
+  const days=[];let cur=new Date(minD);
+  while(cur<=maxD){days.push(new Date(cur));cur.setDate(cur.getDate()+1);}
+
+  const done=ld();
+  const today=new Date();today.setHours(0,0,0,0);
+
+  // Считаем просроченные незавершённые
+  let overdueCount=0;
+
+  let h='<table><thead><tr><th class="th-task">Задача</th><th class="th-cb">✓</th>';
+  days.forEach(d=>{
+    const cls="th-d"+(isToday(d)?" tod":"")+(isWE(d)?" we":"");
+    const col=isToday(d)?"#ef4444":isWE(d)?"#d1d5db":"#bbb";
+    h+=`<th class="${cls}" style="color:${col}">${d.getDate()}<br><span style="font-size:7px">${d.toLocaleDateString("ru",{month:"short"}).slice(0,3)}</span></th>`;
+  });
+  h+="</tr></thead><tbody>";
+
+  PH.forEach(ph=>{
+    h+=`<tr class="row-phase"><td class="td-task" style="padding:5px 12px">${ph.name}</td><td class="td-cb"></td>${days.map(()=>'<td class="td-d"></td>').join("")}</tr>`;
+
+    ph.groups.forEach((g,gi)=>{
+      const gid=g.id||"g"+gi;
+      const gdates=gd(g,sd,ed,end);
+      const color=gc(g);
+      const subs=g.subtasks||[];
+      const chkd=subs.filter(s=>done[s.id||""]).length;
+      const allChk=subs.length>0&&chkd===subs.length;
+
+      // Проверяем просрочку группы
+      if(gdates&&gdates.e<today&&!allChk) overdueCount++;
+
+      h+=`<tr class="row-group" onclick="tog('${gid}')">`;
+      h+=`<td class="td-task"><div class="task-cell">
+        <span class="toggle open" id="t${gid}">▶</span>
+        <div><div class="tname gname">${g.name}</div>
+        ${g.note?`<div class="tnote">${g.note}</div>`:""}
+        </div></div></td>`;
+      h+=`<td class="td-cb" onclick="event.stopPropagation()">
+        <input type="checkbox" class="cb" id="cg${gid}"
+          ${allChk?"checked":""}
+          onchange="togGrp('${gid}',this)"></td>`;
+
+      days.forEach(d=>{
+        const cls="td-d"+(isToday(d)?" tod":"")+(isWE(d)?" we":"");
+        const inR=gdates&&d>=gdates.s&&d<=gdates.e;
+        if(inR){
+          const isS=d.toDateString()===gdates.s.toDateString();
+          const isE=d.toDateString()===gdates.e.toDateString();
+          const br=`${isS?"3px":"0"} ${isE?"3px":"0"} ${isE?"3px":"0"} ${isS?"3px":"0"}`;
+          h+=`<td class="${cls}"><div class="bar-wrap"><div class="bar bar-g" style="background:${color};border-radius:${br}"></div></div></td>`;
+        }else h+=`<td class="${cls}"></td>`;
+      });
+      h+="</tr>";
+
+      subs.forEach((s,si)=>{
+        const sid=s.id||gid+"s"+si;
+        const sdates=gd(s,sd,ed,end);
+        const sc=s.start_ref==="event_date"?C.event:s.color_type==="user_input"?C.user_input:color;
+        const isDone=!!done[sid];
+        const isOverdue=sdates&&sdates.e<today&&!isDone;
+
+        h+=`<tr class="row-sub s${gid}${isDone?" done":""}" id="r${sid}">`;
+        h+=`<td class="td-task"><div class="task-cell sub-pad">
+          <div>
+            <div class="tname" style="${isOverdue?"color:#ef4444;font-weight:500":""}">${isOverdue?"⚠ ":""}${s.name}</div>
+            ${s.note?`<div class="tnote">${s.note}</div>`:""}
+          </div></div></td>`;
+        h+=`<td class="td-cb">
+          <input type="checkbox" class="cb csub"
+            data-sid="${sid}" data-gid="${gid}"
+            ${isDone?"checked":""}
+            onchange="togSub('${sid}',this)"></td>`;
+
+        days.forEach(d=>{
+          const cls="td-d"+(isToday(d)?" tod":"")+(isWE(d)?" we":"");
+          const inR=sdates&&d>=sdates.s&&d<=sdates.e;
+          if(inR){
+            const isS=d.toDateString()===sdates.s.toDateString();
+            const isE=d.toDateString()===sdates.e.toDateString();
+            const br=`${isS?"3px":"0"} ${isE?"3px":"0"} ${isE?"3px":"0"} ${isS?"3px":"0"}`;
+            const barColor=isOverdue&&!isDone?"#ef4444":sc;
+            h+=`<td class="${cls}"><div class="bar-wrap"><div class="bar" style="background:${barColor};border-radius:${br}"></div></div></td>`;
+          }else h+=`<td class="${cls}"></td>`;
+        });
+        h+="</tr>";
+      });
+    });
+  });
+
+  h+="</tbody></table>";
+  wrap.innerHTML=h;
+
+  // Indeterminate для групповых чекбоксов
+  PH.forEach(ph=>ph.groups.forEach((g,gi)=>{
+    const gid=g.id||"g"+gi;
+    const subs=g.subtasks||[];
+    const chkd=subs.filter(s=>done[s.id||""]).length;
+    const gcb=document.getElementById("cg"+gid);
+    if(gcb&&chkd>0&&chkd<subs.length)gcb.indeterminate=true;
+  }));
+
+  // Просрочка
+  const ov=document.getElementById("overdue");
+  ov.textContent=overdueCount>0?`⚠ Просрочено групп: ${overdueCount}`:"";
+
+  upd();
+}
+
+document.getElementById("sign-date").addEventListener("change",build);
+document.getElementById("event-date").addEventListener("change",build);
+build();
+</script>
+</body>
+</html>
