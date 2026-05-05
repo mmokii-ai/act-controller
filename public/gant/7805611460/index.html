@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дашборд — 90ДС/КАПРЕМОНТ/26 · ООО «Мерадом» (превью)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0b0f1a; --surface: #111827; --surface2: #1a2235;
+  --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+  --accent: #f59e0b; --accent2: #3b82f6; --accent3: #8b5cf6;
+  --danger: #ef4444; --success: #10b981; --warn: #f59e0b;
+  --text: #f1f5f9; --muted: #64748b; --muted2: #94a3b8;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text);
+       font-family: 'Golos Text', sans-serif; font-size: 15px; line-height: 1.6; }
+
+/* HEADER */
+.header { position: sticky; top: 0; z-index: 200; background: rgba(11,15,26,0.95);
+           backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 2rem; }
+.header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
+                justify-content: space-between; height: 58px; gap: 1rem; }
+.logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--accent); }
+.contract-badge { font-size: 12px; color: var(--muted2); background: var(--surface2);
+                  border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; white-space: nowrap; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.countdown-mini { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--danger);
+                  letter-spacing: 1px; background: rgba(239,68,68,0.1);
+                  border: 1px solid rgba(239,68,68,0.3); border-radius: 8px;
+                  padding: 4px 12px; white-space: nowrap; }
+.cta-btn { background: var(--accent); color: #000; font-family: 'Golos Text', sans-serif;
+            font-weight: 600; font-size: 13px; border: none; border-radius: 8px;
+            padding: 8px 18px; cursor: pointer; text-decoration: none;
+            transition: opacity .15s, transform .1s; white-space: nowrap; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
+
+/* HERO */
+.hero { max-width: 1200px; margin: 0 auto; padding: 2.5rem 2rem 1.5rem; }
+.hero-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 2px;
+             text-transform: uppercase; color: var(--accent);
+             border: 1px solid rgba(245,158,11,.3); border-radius: 20px;
+             padding: 4px 12px; margin-bottom: 1rem; }
+.hero h1 { font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(28px, 4vw, 46px); letter-spacing: 1px;
+            line-height: 1.1; margin-bottom: 0.75rem; }
+.hero h1 span { color: var(--accent); }
+.hero-sub { color: var(--muted2); max-width: 600px; margin-bottom: 1.75rem; font-size: 14px; }
+
+/* STATS */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 10px; margin-bottom: 2rem; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; }
+.stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .5px; }
+.stat-value.amber { color: var(--accent); }
+.stat-value.red   { color: var(--danger); }
+.stat-value.green { color: var(--success); }
+.stat-value.blue  { color: var(--accent2); }
+
+/* TODAY */
+.today-panel { max-width: 1200px; margin: 0 auto 1.5rem; padding: 0 2rem; }
+.today-card { background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(245,158,11,0.06) 100%);
+               border: 1px solid rgba(239,68,68,0.25); border-radius: 16px; padding: 1.25rem 1.5rem; }
+.today-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.today-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; color: var(--danger); }
+.today-date { font-size: 12px; color: var(--muted2); margin-left: auto; }
+.today-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+.today-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+               border-radius: 10px; padding: .8rem 1rem; display: flex; align-items: flex-start;
+               gap: 10px; cursor: pointer; transition: background .15s; }
+.today-item:hover { background: rgba(255,255,255,0.06); }
+.today-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.today-dot.red   { background: var(--danger); box-shadow: 0 0 8px var(--danger); }
+.today-dot.amber { background: var(--accent);  box-shadow: 0 0 8px var(--accent); }
+.today-item-text { font-size: 13px; color: var(--muted2); line-height: 1.4; }
+.today-item-text strong { color: var(--text); display: block; margin-bottom: 2px; font-size: 13px; }
+.today-item-group { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+/* PROGRESS OVERVIEW */
+.progress-overview { max-width: 1200px; margin: 0 auto 2rem; padding: 0 2rem; }
+.progress-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.prog-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; }
+.prog-name { font-size: 12px; color: var(--muted2); margin-bottom: 8px; font-weight: 500; }
+.prog-bar-wrap { background: rgba(255,255,255,0.06); border-radius: 4px; height: 6px; margin-bottom: 6px; overflow: hidden; }
+.prog-bar { height: 100%; border-radius: 4px; transition: width .4s ease; }
+.prog-bar.green { background: var(--success); }
+.prog-bar.amber { background: var(--accent); }
+.prog-bar.red   { background: var(--danger); }
+.prog-nums { font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; }
+.prog-nums span { font-family: 'Bebas Neue', sans-serif; font-size: 14px; }
+
+/* CHECKPOINTS */
+.checkpoints { max-width: 1200px; margin: 0 auto 2.5rem; padding: 0 2rem; }
+.checkpoints-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px;
+                      margin-bottom: 1rem; color: var(--text); }
+.cp-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.cp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+            padding: 1rem 1.2rem; position: relative; overflow: hidden; }
+.cp-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.cp-card.red::before    { background: var(--danger); }
+.cp-card.amber::before  { background: var(--accent); }
+.cp-card.green::before  { background: var(--success); }
+.cp-card.future::before { background: var(--muted); }
+.cp-date { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: .5px; margin-bottom: 3px; }
+.cp-card.red .cp-date    { color: var(--danger); }
+.cp-card.amber .cp-date  { color: var(--accent); }
+.cp-card.green .cp-date  { color: var(--success); }
+.cp-card.future .cp-date { color: var(--muted2); }
+.cp-label { font-size: 13px; color: var(--text); font-weight: 500; margin-bottom: 6px; line-height: 1.3; }
+.cp-items { font-size: 12px; color: var(--muted2); line-height: 1.6; }
+.cp-days { font-size: 11px; margin-top: 8px; font-weight: 600; }
+.cp-card.red .cp-days    { color: var(--danger); }
+.cp-card.amber .cp-days  { color: var(--accent); }
+.cp-card.green .cp-days  { color: var(--success); }
+.cp-card.future .cp-days { color: var(--muted); }
+
+/* FINE CALC */
+.calc-section { max-width: 1200px; margin: 0 auto 2.5rem; padding: 0 2rem; }
+.calc-card { background: var(--surface); border: 1px solid rgba(239,68,68,0.25); border-radius: 16px; padding: 1.5rem; }
+.calc-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: var(--danger); margin-bottom: 1rem; }
+.calc-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.calc-label { font-size: 13px; color: var(--muted2); white-space: nowrap; }
+.calc-slider { -webkit-appearance: none; appearance: none; width: 200px; height: 4px;
+                border-radius: 2px; background: rgba(239,68,68,0.3); outline: none; cursor: pointer; }
+.calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px;
+                                       border-radius: 50%; background: var(--danger);
+                                       cursor: pointer; box-shadow: 0 0 8px rgba(239,68,68,0.6); }
+.calc-result { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--danger); letter-spacing: .5px; }
+.calc-breakdown { font-size: 12px; color: var(--muted2); margin-top: 4px; line-height: 1.7; }
+.calc-breakdown span { color: var(--text); font-weight: 600; }
+
+/* GROUPS */
+.groups { max-width: 1200px; margin: 0 auto; padding: 0 2rem 4rem; }
+.section-label { max-width: 1200px; margin: 0 auto 1rem; padding: 0 2rem; }
+.section-label h2 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: var(--muted2); }
+.group { margin-bottom: 1.5rem; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.group-header { display: flex; align-items: center; gap: 14px; padding: 1rem 1.5rem;
+                 background: var(--surface); cursor: pointer; user-select: none; transition: background .15s; }
+.group-header:hover { background: var(--surface2); }
+.group-icon { width: 36px; height: 36px; border-radius: 10px; display: flex;
+               align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+.group-title { font-weight: 600; font-size: 15px; flex: 1; }
+.group-meta { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.group-progress { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.group-prog-text { font-size: 12px; color: var(--muted2); }
+.group-prog-mini { width: 60px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+.group-prog-fill { height: 100%; border-radius: 2px; background: var(--success); transition: width .3s; }
+.group-chevron { font-size: 11px; color: var(--muted); transition: transform .2s; margin-left: 8px; }
+.group.open .group-chevron { transform: rotate(180deg); }
+.tasks { display: none; }
+.group.open .tasks { display: block; }
+
+/* TASK */
+.task { border-top: 1px solid var(--border); }
+.task-header { display: grid; grid-template-columns: 24px 1fr auto;
+                align-items: start; gap: 12px; padding: .85rem 1.5rem .5rem;
+                cursor: pointer; transition: background .12s; }
+.task-header:hover { background: rgba(255,255,255,.02); }
+.task-num { font-size: 11px; color: var(--muted); font-family: 'Bebas Neue', sans-serif;
+             letter-spacing: 1px; padding-top: 2px; }
+.task-name { font-size: 14px; color: var(--text); font-weight: 500; line-height: 1.4; }
+.task-right { display: flex; align-items: center; gap: 8px; white-space: nowrap; flex-shrink: 0; }
+.deadline { font-size: 12px; color: var(--muted2); }
+.deadline.urgent { color: var(--danger); font-weight: 600; }
+.deadline.warn   { color: var(--accent); }
+.deadline.ok     { color: var(--success); }
+.priority-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.priority-dot.high { background: var(--danger); box-shadow: 0 0 5px var(--danger); }
+.priority-dot.med  { background: var(--accent); box-shadow: 0 0 5px var(--accent); }
+.priority-dot.low  { background: var(--success); }
+.status-btn { border: none; border-radius: 6px; padding: 3px 10px; font-size: 11px;
+               font-family: 'Golos Text', sans-serif; font-weight: 600; cursor: pointer;
+               transition: all .15s; white-space: nowrap; }
+.status-btn.todo       { background: rgba(100,116,139,0.2); color: var(--muted2); }
+.status-btn.todo:hover { background: rgba(245,158,11,0.2);  color: var(--accent); }
+.status-btn.inprogress { background: rgba(245,158,11,0.2);  color: var(--accent); }
+.status-btn.done       { background: rgba(16,185,129,0.2);  color: var(--success); }
+.task.done-task .task-name { text-decoration: line-through; opacity: 0.5; }
+
+/* TASK BODY */
+.task-body { display: none; padding: .25rem 1.5rem .9rem calc(1.5rem + 24px + 12px); }
+.task.expanded .task-body { display: block; }
+.responsible-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.responsible-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+                      color: var(--muted); font-weight: 600; white-space: nowrap; }
+.responsible-input { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--border2);
+                      border-radius: 6px; padding: 5px 10px; font-size: 13px; color: var(--text);
+                      font-family: 'Golos Text', sans-serif; outline: none; max-width: 280px; }
+.responsible-input:focus { border-color: var(--accent2); }
+.responsible-input::placeholder { color: var(--muted); }
+.detail-box { background: var(--surface2); border-left: 3px solid var(--border2);
+               border-radius: 0 8px 8px 0; padding: .75rem 1rem;
+               font-size: 13px; color: var(--muted2); line-height: 1.65; margin-bottom: 10px; }
+.detail-box strong { color: var(--text); }
+.detail-fine { color: var(--danger); font-weight: 600; }
+.detail-tip  { color: var(--success); font-style: italic; }
+.detail-ref  { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+/* SUBTASKS */
+.subtasks-wrap { margin-top: 2px; }
+.subtasks-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+                   color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+.subtask { display: flex; align-items: flex-start; gap: 10px; padding: 7px 10px;
+            border-radius: 8px; border: 1px solid var(--border);
+            background: rgba(255,255,255,0.02); margin-bottom: 6px;
+            cursor: pointer; transition: background .12s; user-select: none; }
+.subtask:hover { background: rgba(255,255,255,0.04); }
+.subtask-check { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--muted);
+                  flex-shrink: 0; margin-top: 1px; display: flex; align-items: center;
+                  justify-content: center; transition: all .15s; }
+.subtask.checked .subtask-check { background: var(--success); border-color: var(--success); }
+.subtask.checked .subtask-check::after { content: '✓'; font-size: 10px; color: #000; font-weight: 700; }
+.subtask-content { flex: 1; }
+.subtask-name { font-size: 13px; color: var(--text); line-height: 1.4; }
+.subtask.checked .subtask-name { text-decoration: line-through; opacity: 0.45; }
+.subtask-deadline { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.subtask-deadline.red   { color: var(--danger); }
+.subtask-deadline.amber { color: var(--accent); }
+
+/* ADD SUBTASK */
+.add-subtask-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px;
+                    background: none; border: 1px dashed rgba(255,255,255,0.15);
+                    border-radius: 7px; padding: 5px 12px; font-size: 12px; color: var(--muted2);
+                    cursor: pointer; font-family: 'Golos Text', sans-serif; transition: all .15s; }
+.add-subtask-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+.add-subtask-form { display: none; margin-top: 8px; background: var(--surface2);
+                     border: 1px solid var(--border2); border-radius: 10px; padding: .75rem 1rem; }
+.add-subtask-form.open { display: block; }
+.add-subtask-form input { width: 100%; background: rgba(255,255,255,0.05);
+                            border: 1px solid var(--border2); border-radius: 6px;
+                            padding: 6px 10px; font-size: 13px; color: var(--text);
+                            font-family: 'Golos Text', sans-serif; outline: none; margin-bottom: 8px; }
+.add-subtask-form input:focus { border-color: var(--accent2); }
+.add-subtask-form input::placeholder { color: var(--muted); }
+.form-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.form-btn { border: none; border-radius: 6px; padding: 5px 14px; font-size: 12px;
+             font-family: 'Golos Text', sans-serif; font-weight: 600; cursor: pointer; }
+.form-btn.primary { background: var(--accent2); color: #fff; }
+.form-btn.cancel  { background: rgba(255,255,255,0.06); color: var(--muted2); }
+.custom-subtask { border-color: rgba(59,130,246,0.25); background: rgba(59,130,246,0.04); }
+.subtask-del { margin-left: auto; background: none; border: none; color: var(--muted);
+                cursor: pointer; font-size: 14px; padding: 0 4px; transition: color .15s; }
+.subtask-del:hover { color: var(--danger); }
+
+/* MANAGEMENT SECTIONS */
+.mgmt-section { max-width: 1200px; margin: 0 auto 2rem; padding: 0 2rem; }
+.mgmt-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.mgmt-header { display: flex; align-items: center; gap: 12px; padding: 1rem 1.5rem;
+                cursor: pointer; user-select: none; border-bottom: 1px solid var(--border); transition: background .15s; }
+.mgmt-header:hover { background: var(--surface2); }
+.mgmt-icon { font-size: 20px; }
+.mgmt-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; flex: 1; }
+.mgmt-count { font-size: 12px; color: var(--muted2); background: var(--surface2);
+               border: 1px solid var(--border); border-radius: 20px; padding: 2px 10px; }
+.mgmt-body { display: none; padding: 1.25rem 1.5rem; }
+.mgmt-card.open .mgmt-body { display: block; }
+.mgmt-add-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent2);
+                 color: #fff; border: none; border-radius: 8px; padding: 7px 16px;
+                 font-size: 13px; font-family: 'Golos Text', sans-serif; font-weight: 600;
+                 cursor: pointer; margin-bottom: 1rem; transition: opacity .15s; }
+.mgmt-add-btn:hover { opacity: .85; }
+
+/* Issues */
+.issue-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+               padding: .9rem 1rem; margin-bottom: 8px; display: grid;
+               grid-template-columns: 1fr auto; gap: 8px; }
+.issue-title { font-size: 14px; color: var(--text); font-weight: 500; margin-bottom: 4px; }
+.issue-meta { font-size: 12px; color: var(--muted2); display: flex; gap: 12px; flex-wrap: wrap; }
+.issue-badge { display: inline-block; font-size: 11px; font-weight: 600; border-radius: 4px; padding: 2px 8px; }
+.issue-badge.open   { background: rgba(239,68,68,0.15);  color: var(--danger); }
+.issue-badge.inwork { background: rgba(245,158,11,0.15); color: var(--accent); }
+.issue-badge.closed { background: rgba(16,185,129,0.15); color: var(--success); }
+.issue-actions { display: flex; flex-direction: column; gap: 4px; }
+.icon-btn { background: none; border: 1px solid var(--border); border-radius: 6px;
+             padding: 3px 8px; font-size: 12px; cursor: pointer; color: var(--muted2);
+             transition: all .15s; white-space: nowrap; }
+.icon-btn:hover     { border-color: var(--accent2); color: var(--accent2); }
+.icon-btn.del:hover { border-color: var(--danger);  color: var(--danger); }
+
+/* Prescriptions */
+.pres-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.pres-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+                  color: var(--muted); font-weight: 600; padding: 6px 10px; border-bottom: 1px solid var(--border); }
+.pres-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--muted2); }
+.pres-table tr:last-child td { border-bottom: none; }
+.pres-table tr:hover td { background: rgba(255,255,255,0.02); }
+.pres-status { font-size: 11px; font-weight: 600; border-radius: 4px; padding: 2px 8px;
+                display: inline-block; cursor: pointer; }
+.pres-status.open    { background: rgba(239,68,68,0.15);  color: var(--danger); }
+.pres-status.process { background: rgba(245,158,11,0.15); color: var(--accent); }
+.pres-status.done    { background: rgba(16,185,129,0.15); color: var(--success); }
+.pres-overdue { color: var(--danger); font-weight: 600; }
+
+/* Subcontractors */
+.sub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.sub-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; }
+.sub-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.sub-work { font-size: 12px; color: var(--muted2); margin-bottom: 8px; }
+.sub-bar-wrap { background: rgba(255,255,255,0.06); border-radius: 4px; height: 6px; margin-bottom: 6px; overflow: hidden; }
+.sub-bar { height: 100%; border-radius: 4px; background: var(--accent2); }
+.sub-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+.sub-pct { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--accent2); }
+.sub-actions { display: flex; gap: 6px; }
+
+/* Checklist */
+.checklist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 8px; }
+.check-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px;
+               border-radius: 8px; border: 1px solid var(--border);
+               background: rgba(255,255,255,0.02); cursor: pointer;
+               transition: background .12s; user-select: none; }
+.check-item:hover { background: rgba(255,255,255,0.04); }
+.check-box { width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--muted);
+              flex-shrink: 0; margin-top: 1px; display: flex; align-items: center;
+              justify-content: center; transition: all .15s; }
+.check-item.checked .check-box { background: var(--success); border-color: var(--success); }
+.check-item.checked .check-box::after { content: '✓'; font-size: 11px; color: #000; font-weight: 700; }
+.check-text { font-size: 13px; color: var(--text); line-height: 1.4; }
+.check-item.checked .check-text { text-decoration: line-through; opacity: 0.45; color: var(--muted); }
+.checklist-reset { font-size: 12px; color: var(--muted); margin-top: 1rem; }
+.checklist-reset span { color: var(--accent2); cursor: pointer; text-decoration: underline; }
+.checklist-progress { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--success); margin-bottom: .75rem; }
+
+/* Modal */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+                  z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--surface); border: 1px solid var(--border2); border-radius: 16px;
+          padding: 1.5rem; width: 100%; max-width: 480px; }
+.modal h3 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 1rem; }
+.modal label { font-size: 12px; color: var(--muted2); display: block; margin-bottom: 4px; margin-top: 10px; }
+.modal input, .modal select, .modal textarea { width: 100%; background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border2); border-radius: 6px; padding: 7px 10px;
+    font-size: 13px; color: var(--text); font-family: 'Golos Text', sans-serif; outline: none; }
+.modal textarea { resize: vertical; min-height: 70px; }
+.modal input:focus, .modal select:focus, .modal textarea:focus { border-color: var(--accent2); }
+.modal select option { background: var(--surface); }
+.modal-footer { display: flex; gap: 8px; margin-top: 1.25rem; justify-content: flex-end; }
+
+/* Footer CTA */
+.footer-cta { max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem; text-align: center; }
+.footer-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(24px, 4vw, 38px);
+                  margin-bottom: .75rem; letter-spacing: 1px; }
+.footer-cta p { color: var(--muted2); margin-bottom: 1.5rem; max-width: 480px;
+                 margin-left: auto; margin-right: auto; }
+.cta-big { display: inline-block; background: var(--accent); color: #000;
+            font-family: 'Golos Text', sans-serif; font-weight: 700; font-size: 15px;
+            border-radius: 12px; padding: 14px 36px; text-decoration: none; transition: opacity .15s, transform .1s; }
+.cta-big:hover { opacity: .88; transform: translateY(-2px); }
+
+/* BLUR (только для blur-версии) */
+.blur-wrap { position: relative; }
+.blur-overlay { position: absolute; inset: 0;
+                 background: linear-gradient(to bottom, transparent 0%, rgba(11,15,26,0.85) 40%, rgba(11,15,26,0.98) 100%);
+                 display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+                 padding-bottom: 2rem; z-index: 10; border-radius: 0 0 16px 16px; }
+.blur-tasks { filter: blur(5px); pointer-events: none; user-select: none; }
+.blur-cta-box { text-align: center; }
+.blur-cta-box p { font-size: 14px; color: var(--muted2); margin-bottom: .75rem; }
+.blur-cta-box a { display: inline-block; background: var(--accent); color: #000;
+                   font-family: 'Golos Text', sans-serif; font-weight: 700;
+                   font-size: 14px; border-radius: 10px; padding: 10px 28px;
+                   text-decoration: none; transition: opacity .15s; }
+.blur-cta-box a:hover { opacity: .88; }
+
+@media (max-width: 640px) {
+  .contract-badge { display: none; }
+  .hero, .groups, .checkpoints, .progress-overview,
+  .today-panel, .calc-section, .section-label, .mgmt-section { padding-left: 1rem; padding-right: 1rem; }
+  .task-header { grid-template-columns: 20px 1fr; }
+  .task-right { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">ПЛАНРАБОТ</div>
+    <div class="contract-badge">Контракт 90ДС/КАПРЕМОНТ/26 · ООО «Мерадом»</div>
+    <div class="header-right">
+      <div class="countdown-mini" id="countdownMini">–</div>
+      <a class="cta-btn" href="mailto:tops300@mail.ru?subject=План по контракту 90ДС/КАПРЕМОНТ/26">Получить полный план →</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-tag">ИИ проанализировал контракт — каждая задача из реального текста</div>
+  <h1>Капитальный ремонт систем отопления, вентиляции и слабых токов здания, капитальный ремонт помещений, подвала, цоколя и 2-го этажа в ГБДОУ детский сад № 90 Петроградского района<br><span>11 199 687 ₽</span></h1>
+  <p class="hero-sub">197022, г. Санкт-Петербург, ул. Профессора Попова, дом 31, литера А · Ежедневный инструмент директора. Данные сохраняются в браузере.</p>
+  <div class="stats">
+    <div class="stat-card"><div class="stat-label">Цена контракта</div><div class="stat-value amber">11 199 687 ₽</div></div>
+    <div class="stat-card"><div class="stat-label">Аванс 0%</div><div class="stat-value green">0 ₽</div></div>
+    <div class="stat-card"><div class="stat-label">Сдача объекта</div><div class="stat-value red">31.07.2026</div></div>
+    <div class="stat-card"><div class="stat-label">До сдачи</div><div class="stat-value red" id="daysLeft">–</div></div>
+    <div class="stat-card"><div class="stat-label">Штраф / нарушение</div><div class="stat-value red">559 984 ₽</div></div>
+    <div class="stat-card"><div class="stat-label">Субподряд СМП</div><div class="stat-value amber">0 ₽</div></div>
+  </div>
+</section>
+
+<div class="today-panel">
+  <div class="today-card">
+    <div class="today-header">
+      <span style="font-size:18px">🔥</span>
+      <div class="today-title">Горит сейчас</div>
+      <div class="today-date" id="todayDate"></div>
+    </div>
+    <div class="today-items" id="todayItems"></div>
+  </div>
+</div>
+
+<div class="progress-overview">
+  <div class="progress-grid" id="progressGrid"></div>
+</div>
+
+<div class="checkpoints">
+  <div class="checkpoints-title">📍 Контрольные точки</div>
+  <div class="cp-list">
+    <div class="cp-card red" id="cp1">
+      <div class="cp-date">6 МАЯ 2026</div>
+      <div class="cp-label">Передача объекта Подрядчику</div>
+      <div class="cp-items">✦ Заказчик передаёт объект по акту приёма-передачи в течение 2 рабочих дней с даты заключения контракта<br>✦ Подписание акта совместно с СПб ГБУ «Служба заказчика администрации Петроградского района»<br>✦ Фиксация показаний счётчиков энерго-, водо-, теплоресурсов</div>
+      <div class="cp-days">🔴 Осталось 1 дн</div>
+    </div>
+    <div class="cp-card red" id="cp2">
+      <div class="cp-date">14 МАЯ 2026</div>
+      <div class="cp-label">Предоставление календарного плана</div>
+      <div class="cp-items">✦ Подрядчик заполняет и подписывает календарный план (график) выполнения работ<br>✦ Передача плана на утверждение Заказчику и согласование в СПб ГБУ «Служба заказчика»<br>✦ Срок: не позднее 10 календарных дней со дня заключения контракта</div>
+      <div class="cp-days">🔴 Осталось 9 дн</div>
+    </div>
+    <div class="cp-card red" id="cp3">
+      <div class="cp-date">14 МАЯ 2026</div>
+      <div class="cp-label">Организационные документы до начала работ</div>
+      <div class="cp-items">✦ Приказ о назначении ответственного производителя работ<br>✦ Приказ о назначении ответственных за пожарную безопасность и технику безопасности<br>✦ Список личного состава, занятого выполнением работ (в течение 2 р.д. с момента передачи объекта)<br>✦ Сведения обо всех работниках, автотранспорте, технических средствах с повышенным уровнем шума<br>✦ Назначение ответственного за оценку профессиональных рисков (до подписания акта приёма-передачи)</div>
+      <div class="cp-days">🔴 Осталось 9 дн</div>
+    </div>
+    <div class="cp-card red" id="cp4">
+      <div class="cp-date">2 ИЮНЯ 2026</div>
+      <div class="cp-label">Начало выполнения работ</div>
+      <div class="cp-items">✦ Фактический старт работ после подписания акта приёма-передачи<br>✦ Заключение договора о возмещении коммунальных услуг (Приложение №7)<br>✦ Работы ведутся ежедневно с 09:00 до 19:00 по согласованию с Заказчиком</div>
+      <div class="cp-days">🔴 Осталось 28 дн</div>
+    </div>
+    <div class="cp-card amber" id="cp5">
+      <div class="cp-date">28 ИЮЛЯ 2026</div>
+      <div class="cp-label">Завершение работ и подача документов о приёмке</div>
+      <div class="cp-items">✦ Завершение всех работ не позднее 31.07.2026<br>✦ Предоставление обеспечения гарантийных обязательств (559 984,36 руб.) до подписания акта приёмки<br>✦ Подрядчик формирует документ о приёмке в ЕИС в течение 3 рабочих дней с момента завершения<br>✦ Письменное извещение Заказчика об окончании работ<br>✦ Направление полного комплекта документации в СПб ГБУ «Служба заказчика»</div>
+      <div class="cp-days">🟡 Осталось 84 дн</div>
+    </div>
+    <div class="cp-card amber" id="cp6">
+      <div class="cp-date">31 ИЮЛЯ 2026</div>
+      <div class="cp-label">Предельный срок окончания работ</div>
+      <div class="cp-items">✦ Все работы по контракту должны быть выполнены<br>✦ Исполнительная документация согласована с СПб ГБУ «Служба заказчика»<br>✦ Строительный мусор вывезен (не позднее 10-го рабочего дня после завершения работ)</div>
+      <div class="cp-days">🟡 Осталось 87 дн</div>
+    </div>
+    <div class="cp-card future" id="cp7">
+      <div class="cp-date">31 ДЕКАБРЯ 2026</div>
+      <div class="cp-label">Окончание срока действия контракта</div>
+      <div class="cp-items">✦ Контракт действует до 31 декабря 2026 года включительно<br>✦ В части неисполненных обязательств — до полного их исполнения</div>
+      <div class="cp-days">Через 240 дн</div>
+    </div>
+  </div>
+</div>
+
+<div class="calc-section">
+  <div class="calc-card">
+    <div class="calc-title">⚠️ Калькулятор цены просрочки</div>
+    <div class="calc-row">
+      <div class="calc-label">Просрочка сдачи:</div>
+      <input type="range" class="calc-slider" id="fineSlider" min="1" max="180" value="30">
+      <div id="finedays" style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--danger);min-width:80px">30 ДНЕЙ</div>
+    </div>
+    <div class="calc-result" id="fineResult">–</div>
+    <div class="calc-breakdown" id="fineBreak">Формула: 1/300 ключевой ставки ЦБ РФ от цены контракта, уменьшенной на сумму пропорционально фактически исполненным обязательствам, за каждый день просрочки</div>
+  </div>
+</div>
+<div class="section-label"><h2>📋 Все задачи по контракту</h2></div><div class="groups">
+  <div class="group open" data-group="start">
+    <div class="group-header" onclick="toggleGroup(this)">
+      <div class="group-icon" style="background:rgba(59,130,246,.15)">🚀</div>
+      <div class="group-title">Старт и мобилизация площадки</div>
+      <div class="group-meta">6 задач</div>
+      <div class="group-progress">
+        <span class="group-prog-text" id="prog-start">0/6</span>
+        <div class="group-prog-mini"><div class="group-prog-fill" id="progbar-start" style="width:0%"></div></div>
+      </div>
+      <div class="group-chevron">▼</div>
+    </div>
+    <div class="tasks">
+      <div class="task" data-tid="s1" data-urgent="true">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">01</div>
+          <div class="task-name">Подписать акт приёма-передачи объекта совместно с СПб ГБУ «Служба заказчика»</div>
+          <div class="task-right">
+            <span class="deadline urgent">2 р.дня с даты контракта (до 06.05.2026)</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'s1')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Заказчик обязан передать объект по адресу ул. Профессора Попова, 31 лит. А в течение 2 рабочих дней с момента заключения контракта. В акте фиксируются показания счётчиков энерго-, водо- и теплоресурсов. Без подписанного акта работы не могут начаться, а срок начала работ (02.06.2026) сдвигается. Акт согласовывается с СПб ГБУ «Служба заказчика Петроградского района».
+            <br><span class="detail-fine">Без акта Подрядчик не обязан приступать к работам, что может привлечь риск срыва срока окончания работ (31.07.2026) и начисления пеней 1/300 ставки ЦБ</span>
+            <br><span class="detail-tip">Заранее уведомить СПб ГБУ «Служба заказчика» о дате подписания акта, обеспечить присутствие представителя с полномочиями. Подготовить форму акта (Приложение №5 к контракту) заранее.</span>
+            <div class="detail-ref">п. 2.2.1, п. 4.1.1, Приложение №5</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="s1-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Согласовать дату и время подписания акта с СПб ГБУ «Служба заказчика»</div>
+              <div class="subtask-deadline red">немедленно</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s1-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подготовить форму акта (Приложение №5) с данными счётчиков</div>
+              <div class="subtask-deadline red">до 05.05.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s1-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подписать акт трёхсторонне (Заказчик, Подрядчик, СПб ГБУ)</div>
+              <div class="subtask-deadline red">до 06.05.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="s2" data-urgent="true">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">02</div>
+          <div class="task-name">Назначить приказом ответственного производителя работ, ответственных за ПБ и ТБ</div>
+          <div class="task-right">
+            <span class="deadline urgent">до начала работ</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'s2')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик обязан до начала работ назначить приказом ответственного производителя работ, ответственного за пожарную безопасность и технику безопасности на объекте. Копия приказа предоставляется Заказчику. Без этих документов Подрядчик не вправе допускать работников на объект.
+            <br><span class="detail-fine">5% цены контракта (559 984,36 руб.) за каждый факт ненадлежащего исполнения обязательства (п. 8.2.2б)</span>
+            <br><span class="detail-tip">Совместить выпуск приказа с подписанием акта приёма-передачи. Указать в приказе ФИО, должность и зону ответственности каждого назначенного лица.</span>
+            <div class="detail-ref">п. 4.2.3, п. 4.2.13</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="s2-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Издать приказ о назначении ответственного производителя работ</div>
+              <div class="subtask-deadline red">до 06.05.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s2-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Издать приказ об ответственных за ПБ и ТБ на объекте</div>
+              <div class="subtask-deadline red">до 06.05.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s2-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Передать копии приказов Заказчику (с подтверждением получения)</div>
+              <div class="subtask-deadline red">до 06.05.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="s3" data-urgent="true">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">03</div>
+          <div class="task-name">Предоставить Заказчику список работников, автотранспорта и спецтехники</div>
+          <div class="task-right">
+            <span class="deadline urgent">2 р.дня с момента передачи объекта</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'s3')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик обязан до начала работ предоставить список всех привлекаемых работников (ФИО), государственные номера автотранспорта и технических средств с повышенным уровнем шума. Отдельно — список личного состава в течение 2 рабочих дней с момента передачи объекта. Сведения подписываются руководителем или уполномоченным лицом.
+            <br><span class="detail-fine">5% цены контракта (559 984,36 руб.) за каждый факт ненадлежащего исполнения (п. 8.2.2б)</span>
+            <br><span class="detail-tip">Подготовить форму списка заблаговременно. Предусмотреть процедуру обновления списка при смене работников (уведомление Заказчика).</span>
+            <div class="detail-ref">п. 2.2.3, п. 4.2.14</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="s3-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Составить список всех работников с ФИО</div>
+              <div class="subtask-deadline red">до 06.05.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s3-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Внести данные автотранспорта (гос. номера) и шумной техники</div>
+              <div class="subtask-deadline red">до 06.05.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s3-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Передать сведения Заказчику за подписью руководителя</div>
+              <div class="subtask-deadline red">2 р.дня с передачи объекта</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="blur-wrap" style="position:relative;min-height:200px">
+        <div class="blur-tasks">
+      <div class="task" data-tid="s4" data-urgent="true">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">04</div>
+          <div class="task-name">Заключить договор о возмещении коммунальных услуг (Приложение №7)</div>
+          <div class="task-right">
+            <span class="deadline urgent">одновременно с подписанием акта приёма-передачи</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'s4')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Одновременно с подписанием акта приёма-передачи объекта стороны заключают договор о возмещении затрат на электроэнергию, теплоэнергию, водоснабжение и водоотведение. Стоимость потреблённых ресурсов вычитается из суммы оплаты по контракту. Без договора финальная оплата невозможна.
+            <br><span class="detail-fine">Оплата выполненных работ осуществляется ТОЛЬКО после возмещения стоимости коммунальных ресурсов (п. 3.5)</span>
+            <br><span class="detail-tip">Использовать шаблон Приложения №7. Зафиксировать показания всех счётчиков в акте приёма-передачи (Приложение №5).</span>
+            <div class="detail-ref">п. 4.2.19, п. 3.5, п. 3.6, Приложение №7</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="s4-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подготовить договор по шаблону Приложения №7</div>
+              <div class="subtask-deadline red">до 06.05.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s4-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подписать договор одновременно с актом приёма-передачи</div>
+              <div class="subtask-deadline red">до 06.05.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s4-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Зафиксировать номера всех счётчиков в акте передачи</div>
+              <div class="subtask-deadline red">до 06.05.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="s5" data-urgent="true">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">05</div>
+          <div class="task-name">Назначить ответственного за оценку профессиональных рисков (Приказ МТ №656н)</div>
+          <div class="task-right">
+            <span class="deadline urgent">не позднее даты подписания акта приёма-передачи</span>
+            <div class="priority-dot med"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'s5')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик обязан назначить ответственного за составление документов по профессиональным рискам согласно Приказу Минтруда №656н от 22.09.2021 (перечень вредных факторов, идентифицированных опасностей). Информация об ответственном лице сообщается Заказчику не позднее даты подписания акта приёма-передачи объекта.
+            <br><span class="detail-fine">5% цены контракта за каждый факт ненадлежащего исполнения (п. 8.2.2б)</span>
+            <br><span class="detail-tip">Совместить назначение с приказом по ТБ. Подготовить пакет документов по оценке рисков до выхода первых рабочих на объект.</span>
+            <div class="detail-ref">п. 4.2.17, п. 4.2.18</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="s5-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Назначить ответственного за оценку профрисков приказом</div>
+              <div class="subtask-deadline red">до подписания акта</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s5-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Сообщить Заказчику ФИО и должность ответственного лица</div>
+              <div class="subtask-deadline red">до подписания акта</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s5-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Составить перечень вредных факторов и идентифицированных опасностей</div>
+              <div class="subtask-deadline red">до начала работ</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="s6">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">06</div>
+          <div class="task-name">Обеспечить наличие лицензии МЧС для субподрядчика по пожарной безопасности</div>
+          <div class="task-right">
+            <span class="deadline urgent">до начала работ по ПБ</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'s6')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Работы по обеспечению пожарной безопасности (монтаж, обслуживание, ремонт средств ПБ) должны выполняться организацией, имеющей действующую лицензию МЧС согласно ФЗ №99 и Постановлению Правительства РФ №1128. Лицензия должна включать вид: монтаж автоматических систем противодымной вентиляции с диспетчеризацией и ПНР. Разрешительные документы включаются в состав документации.
+            <br><span class="detail-fine">5% цены контракта за каждый факт ненадлежащего исполнения (п. 8.2.2б); возможный отказ в приёмке работ</span>
+            <br><span class="detail-tip">Запросить копию лицензии МЧС у субподрядчика ДО начала работ. Проверить срок действия и перечень разрешённых видов работ.</span>
+            <div class="detail-ref">п. 4.2.16</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="s6-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Выбрать субподрядчика с действующей лицензией МЧС</div>
+              <div class="subtask-deadline amber">до начала работ по ПБ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s6-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Получить копию лицензии и проверить виды работ</div>
+              <div class="subtask-deadline amber">до начала работ по ПБ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="s6-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Включить лицензию в пакет исполнительной документации</div>
+              <div class="subtask-deadline ok">до сдачи объекта</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+        </div>
+        <div class="blur-overlay">
+          <div class="blur-cta-box">
+            <p>Ещё <strong>3</strong> задач скрыто — получите полный план</p>
+            <a href="mailto:tops300@mail.ru?subject=Полный план по контракту">Получить полный план</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group open" data-group="permit">
+    <div class="group-header" onclick="toggleGroup(this)">
+      <div class="group-icon" style="background:rgba(245,158,11,.15)">💰</div>
+      <div class="group-title">Разрешения и аванс</div>
+      <div class="group-meta">5 задач</div>
+      <div class="group-progress">
+        <span class="group-prog-text" id="prog-permit">0/5</span>
+        <div class="group-prog-mini"><div class="group-prog-fill" id="progbar-permit" style="width:0%"></div></div>
+      </div>
+      <div class="group-chevron">▼</div>
+    </div>
+    <div class="tasks">
+      <div class="task" data-tid="p1" data-urgent="true">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">01</div>
+          <div class="task-name">Предоставить и утвердить календарный план (график) выполнения работ</div>
+          <div class="task-right">
+            <span class="deadline urgent">10 кал. дней с даты контракта (до 14.05.2026)</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'p1')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик заполняет и подписывает календарный план (Приложение №4) и в течение 10 календарных дней с даты заключения контракта (04.05.2026) передаёт его на утверждение Заказчику и согласование в СПб ГБУ «Служба заказчика». Все работы должны производиться в соответствии с утверждённым графиком. Отклонение от графика является основанием для расторжения контракта (п. 4.5).
+            <br><span class="detail-fine">Отклонение от сроков графика → основание для одностороннего отказа Заказчика от контракта (п. 4.5)</span>
+            <br><span class="detail-tip">Разбить 90 дней (02.06–31.07.2026) на еженедельные этапы по видам работ. Согласовать критический путь с техническим надзором до подачи на утверждение.</span>
+            <div class="detail-ref">п. 2.2.1, п. 4.5, Приложение №4</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="p1-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Разработать детальный план по видам работ и неделям</div>
+              <div class="subtask-deadline red">до 12.05.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="p1-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Согласовать план с СПб ГБУ «Служба заказчика»</div>
+              <div class="subtask-deadline red">до 13.05.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="p1-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Получить утверждение Заказчика и разместить в ЕИС</div>
+              <div class="subtask-deadline red">до 14.05.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="p2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">02</div>
+          <div class="task-name">Согласовать все виды работ с Заказчиком и СПб ГБУ «Служба заказчика» до начала каждого вида</div>
+          <div class="task-right">
+            <span class="deadline warn">постоянно, до начала каждого вида работ</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'p2')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Все виды работ Подрядчик обязан производить только после согласования с Заказчиком и СПб ГБУ «Служба заказчика Петроградского района». Работы с повышенным уровнем шума (перфораторы, электродрели и т.п.) согласуются отдельно. Несогласованные работы могут быть не приняты и не оплачены.
+            <br><span class="detail-fine">Работы без согласования не подлежат приёмке и оплате (п. 3.8, п. 7.19)</span>
+            <br><span class="detail-tip">Вести журнал согласований — фиксировать каждое согласование письменно (email или бумажный запрос). Заранее подавать заявки на шумные работы.</span>
+            <div class="detail-ref">п. 4.2.12, п. 6.4, п. 2.2.3</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="p2-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Установить порядок согласования (контакт, форма, срок ответа)</div>
+              <div class="subtask-deadline amber">до начала работ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="p2-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Вести журнал согласований по каждому виду работ</div>
+              <div class="subtask-deadline ok">постоянно</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="p3" data-urgent="true">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">03</div>
+          <div class="task-name">Обеспечить обеспечение исполнения контракта (10% от цены = 1 119 969 руб.)</div>
+          <div class="task-right">
+            <span class="deadline urgent">до заключения контракта (выполнено или проверить)</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'p3')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик до заключения контракта предоставляет обеспечение исполнения контракта в размере 10% цены контракта = 1 119 968,71 руб. в виде независимой банковской гарантии или денежного взноса на счёт Заказчика. Срок действия гарантии должен превышать срок исполнения обязательств не менее чем на 1 месяц. При отзыве лицензии банка — предоставить новое обеспечение в течение 1 месяца.
+            <br><span class="detail-fine">Пени 1/300 ставки ЦБ за каждый день просрочки предоставления нового обеспечения (п. 8.4, п. 9.4)</span>
+            <br><span class="detail-tip">Проверить, что гарантия содержит условие о бесспорном списании. В назначении платежа обязательно указать: «ВР 510, предмет контракта, номер извещения, обеспечение исполнения контракта».</span>
+            <div class="detail-ref">п. 9.1, п. 9.2, п. 9.3, п. 9.4</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="p3-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подтвердить наличие действующего обеспечения (гарантия/депозит)</div>
+              <div class="subtask-deadline red">немедленно</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="p3-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Проверить срок действия гарантии (должен быть +1 мес. после 31.07.2026)</div>
+              <div class="subtask-deadline red">до 06.05.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="p3-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Отслеживать статус банка-гаранта, при необходимости заменить</div>
+              <div class="subtask-deadline ok">в течение 1 мес. при отзыве лицензии</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="blur-wrap" style="position:relative;min-height:200px">
+        <div class="blur-tasks">
+      <div class="task" data-tid="p4">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">04</div>
+          <div class="task-name">Согласовать шумные работы (перфораторы, бурение и т.п.) отдельно с Заказчиком</div>
+          <div class="task-right">
+            <span class="deadline warn">до начала каждого шумного вида работ</span>
+            <div class="priority-dot med"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'p4')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Работы с повышенным уровнем шума (электродрели, перфораторы, другой электроинструмент) должны быть отдельно согласованы с Заказчиком. Это особенно важно, поскольку объект — действующий детский сад. Также необходимо соблюдать временной режим работ: с 09:00 до 19:00 по рабочим дням.
+            <br><span class="detail-fine">Несогласованные работы → штраф 5 000 руб. за каждый факт (п. 8.2.5б); риск приостановки работ</span>
+            <br><span class="detail-tip">Составить недельный план шумных работ и согласовывать его каждую пятницу на следующую неделю. Учитывать режим работы детского сада.</span>
+            <div class="detail-ref">п. 2.2.3, п. 4.2.13</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="p4-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Разработать еженедельный план шумных работ</div>
+              <div class="subtask-deadline amber">с начала работ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="p4-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Получать письменное согласование Заказчика еженедельно</div>
+              <div class="subtask-deadline ok">постоянно</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="p5" data-urgent="true">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">05</div>
+          <div class="task-name">Подтвердить наличие аттестации работников по электробезопасности (группа ≥ III)</div>
+          <div class="task-right">
+            <span class="deadline urgent">до допуска работников на объект</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'p5')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Все работники, допускаемые к выполнению работ, должны быть аттестованы по правилам электробезопасности (ПТЭЭП, гл. 1.4) и иметь группу электробезопасности не ниже III. Пуско-наладочные работы систем вентиляции должны проводить профильные специалисты с поверенными инструментами; организация должна иметь сертификат завода-производителя.
+            <br><span class="detail-fine">5% цены контракта (559 984,36 руб.) за каждый факт ненадлежащего исполнения; риск НС и гибели людей</span>
+            <br><span class="detail-tip">До начала работ собрать удостоверения о группе электробезопасности всех электриков. Проверить наличие сертификата на ПНР вентиляции у субподрядчика.</span>
+            <div class="detail-ref">п. 4.2.16</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="p5-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Собрать копии удостоверений об электробезопасности (группа ≥ III)</div>
+              <div class="subtask-deadline red">до допуска на объект</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="p5-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Запросить сертификат завода-производителя у субподрядчика по ПНР вентиляции</div>
+              <div class="subtask-deadline amber">до начала ПНР</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="p5-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Проверить поверку измерительных инструментов для ПНР</div>
+              <div class="subtask-deadline amber">до начала ПНР</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+        </div>
+        <div class="blur-overlay">
+          <div class="blur-cta-box">
+            <p>Ещё <strong>2</strong> задач скрыто — получите полный план</p>
+            <a href="mailto:tops300@mail.ru?subject=Полный план по контракту">Получить полный план</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group open" data-group="subcontract">
+    <div class="group-header" onclick="toggleGroup(this)">
+      <div class="group-icon" style="background:rgba(139,92,246,.15)">🤝</div>
+      <div class="group-title">Субподряд и контроль качества</div>
+      <div class="group-meta">5 задач</div>
+      <div class="group-progress">
+        <span class="group-prog-text" id="prog-subcontract">0/5</span>
+        <div class="group-prog-mini"><div class="group-prog-fill" id="progbar-subcontract" style="width:0%"></div></div>
+      </div>
+      <div class="group-chevron">▼</div>
+    </div>
+    <div class="tasks">
+      <div class="task" data-tid="sc1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">01</div>
+          <div class="task-name">Уведомить Заказчика письменно о привлечении субподрядчиков</div>
+          <div class="task-right">
+            <span class="deadline warn">до начала работ субподрядчиком</span>
+            <div class="priority-dot med"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'sc1')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик вправе привлекать субподрядные организации, обязательно уведомив об этом Заказчика письменно. Подрядчик остаётся ответственным перед Заказчиком за все работы субподрядчиков в полном объёме. Уведомление должно поступить до начала работ субподрядчика на объекте.
+            <br><span class="detail-fine">5 000 руб. за каждый факт ненадлежащего исполнения (п. 8.2.5б)</span>
+            <br><span class="detail-tip">Включить в уведомление: наименование субподрядчика, ИНН, виды выполняемых работ, планируемый период. Хранить подтверждение получения Заказчиком.</span>
+            <div class="detail-ref">п. 4.4.2</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="sc1-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подготовить письменное уведомление с данными каждого субподрядчика</div>
+              <div class="subtask-deadline amber">до начала работ субподрядчиком</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="sc1-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Получить подтверждение получения уведомления Заказчиком</div>
+              <div class="subtask-deadline amber">до начала работ субподрядчиком</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="sc2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">02</div>
+          <div class="task-name">Контролировать качество материалов и соответствие технической документации</div>
+          <div class="task-right">
+            <span class="deadline warn">постоянно в ходе работ</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'sc2')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик обязан обеспечить надлежащее качество используемых материалов, их соответствие технической документации, действующим нормативам и техническим условиям (ГОСТ, СНиП, СП). Заказчик и технический надзор вправе в любое время проверять используемые материалы. Работы с несоответствующими материалами не принимаются и не оплачиваются.
+            <br><span class="detail-fine">Работы с отклонениями не принимаются до устранения (п. 3.8, п. 7.19); штраф 5% цены контракта (п. 8.2.2б)</span>
+            <br><span class="detail-tip">На каждую партию материалов сразу собирать: сертификат соответствия, паспорт качества, накладную. Хранить в папке «Исполнительная документация» по каждому виду работ.</span>
+            <div class="detail-ref">п. 4.2.10, п. 5.2, п. 6.2</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="sc2-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Установить входной контроль качества материалов на объекте</div>
+              <div class="subtask-deadline amber">до начала работ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="sc2-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Собирать сертификаты и паспорта на каждую партию материалов</div>
+              <div class="subtask-deadline ok">постоянно</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="sc2-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Фиксировать результаты входного контроля в общем журнале работ</div>
+              <div class="subtask-deadline ok">постоянно</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="sc3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">03</div>
+          <div class="task-name">Обеспечить беспрепятственный доступ Заказчика и технического надзора на объект</div>
+          <div class="task-right">
+            <span class="deadline warn">постоянно в ходе работ</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'sc3')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик обязан обеспечивать Заказчику и представителям технического надзора СПб ГБУ «Служба заказчика» возможность контроля и надзора за ходом работ в любое время, представлять по их требованию отчёты о ходе выполнения работ и документацию. Препятствование доступу является нарушением контракта.
+            <br><span class="detail-fine">5 000 руб. за каждый факт ненадлежащего исполнения (п. 8.2.5б); риск приостановки приёмки работ</span>
+            <br><span class="detail-tip">Назначить сопровождающего для представителей надзора. Вести журнал посещений технического надзора.</span>
+            <div class="detail-ref">п. 4.2.6, п. 2.2.3</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="sc3-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Определить контактное лицо для взаимодействия с техническим надзором</div>
+              <div class="subtask-deadline amber">до начала работ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="sc3-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Обеспечить пропускной режим для представителей Заказчика и СПб ГБУ</div>
+              <div class="subtask-deadline amber">с начала работ</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="blur-wrap" style="position:relative;min-height:200px">
+        <div class="blur-tasks">
+      <div class="task" data-tid="sc4">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">04</div>
+          <div class="task-name">Вести общий журнал работ и акты освидетельствования скрытых работ</div>
+          <div class="task-right">
+            <span class="deadline warn">с первого дня работ до сдачи</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'sc4')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик обязан вести общий журнал работ (1 экз.) и своевременно оформлять акты освидетельствования скрытых работ до их закрытия следующими слоями. Заказчик обязан участвовать в освидетельствовании скрытых работ. Без актов скрытых работ Заказчик вправе потребовать вскрытия конструкций за счёт Подрядчика.
+            <br><span class="detail-fine">Отсутствие журнала и актов → отказ в приёмке работ (п. 7.18); штраф 5% цены контракта (п. 8.2.2б)</span>
+            <br><span class="detail-tip">Планировать вызов представителя Заказчика и технадзора для освидетельствования за 1-2 дня до закрытия скрытых работ. Фотофиксация каждого скрытого слоя обязательна.</span>
+            <div class="detail-ref">п. 4.1.4, п. 4.2.23</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="sc4-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Завести общий журнал работ с первого дня</div>
+              <div class="subtask-deadline amber">02.06.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="sc4-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Согласовывать дату освидетельствования скрытых работ с Заказчиком заранее</div>
+              <div class="subtask-deadline ok">до закрытия каждого скрытого слоя</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="sc4-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подписывать акты скрытых работ у Заказчика и технического надзора</div>
+              <div class="subtask-deadline ok">до закрытия каждого скрытого слоя</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="sc5">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">05</div>
+          <div class="task-name">Обеспечить инструктаж работников по ОТ и ТБ, вести журналы по охране труда</div>
+          <div class="task-right">
+            <span class="deadline warn">до допуска каждого работника к работам</span>
+            <div class="priority-dot med"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'sc5')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик обязан самостоятельно проводить инструктаж своих работников по охране труда и технике безопасности, обеспечивать их СИЗ и вести журналы по ОТ и ТБ. К работам допускаются только лица, прошедшие инструктаж, оформленный документально с указанием ответственного лица за ТБ. Контроль условий труда — ответственность Подрядчика.
+            <br><span class="detail-fine">5 000 руб. за каждый факт ненадлежащего исполнения (п. 8.2.5б); риск НС и ответственности по ТК/УК РФ</span>
+            <br><span class="detail-tip">Вести отдельный журнал инструктажей на объекте. Список работников в журнале должен совпадать со списком, переданным Заказчику.</span>
+            <div class="detail-ref">п. 4.2.13, п. 4.2.17</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="sc5-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Провести первичный инструктаж всех работников до выхода на объект</div>
+              <div class="subtask-deadline amber">до 02.06.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="sc5-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Завести журналы ОТ и ТБ на объекте</div>
+              <div class="subtask-deadline amber">до 02.06.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="sc5-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Обеспечить всех работников СИЗ и фирменной одеждой</div>
+              <div class="subtask-deadline amber">до начала работ</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+        </div>
+        <div class="blur-overlay">
+          <div class="blur-cta-box">
+            <p>Ещё <strong>2</strong> задач скрыто — получите полный план</p>
+            <a href="mailto:tops300@mail.ru?subject=Полный план по контракту">Получить полный план</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group open" data-group="monthly">
+    <div class="group-header" onclick="toggleGroup(this)">
+      <div class="group-icon" style="background:rgba(59,130,246,.15)">📊</div>
+      <div class="group-title">Ежемесячная приёмка и оплата</div>
+      <div class="group-meta">5 задач</div>
+      <div class="group-progress">
+        <span class="group-prog-text" id="prog-monthly">0/5</span>
+        <div class="group-prog-mini"><div class="group-prog-fill" id="progbar-monthly" style="width:0%"></div></div>
+      </div>
+      <div class="group-chevron">▼</div>
+    </div>
+    <div class="tasks">
+      <div class="task" data-tid="m1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">01</div>
+          <div class="task-name">Формировать документ о приёмке в ЕИС после завершения каждого этапа/месяца</div>
+          <div class="task-right">
+            <span class="deadline warn">не позднее 3 р.дней с момента завершения этапа</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'m1')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            После завершения работ (или отдельного этапа) Подрядчик в течение 3 рабочих дней формирует документ о приёмке в ЕИС, подписывает усиленной ЭЦП и размещает в системе. К документу прикладываются: счёт, акт КС-2, справка КС-3, счёт-фактура, техническая документация. Заказчик подписывает или направляет мотивированный отказ в течение 20 рабочих дней.
+            <br><span class="detail-fine">Без документа о приёмке оплата невозможна. Заказчик оплачивает в течение 7 р.дней после подписания документа о приёмке (п. 3.5)</span>
+            <br><span class="detail-tip">Готовить пакет документов (КС-2, КС-3, счёт) параллельно с выполнением работ, не ждать конца месяца. Контролировать срок ответа Заказчика (20 р.дней).</span>
+            <div class="detail-ref">п. 7.5, п. 7.6, п. 7.7, п. 3.5</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="m1-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подготовить акт КС-2 и справку КС-3 за период</div>
+              <div class="subtask-deadline amber">в течение 3 р.дней с завершения этапа</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="m1-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Разместить документ о приёмке в ЕИС с подписью ЭЦП</div>
+              <div class="subtask-deadline amber">в течение 3 р.дней с завершения этапа</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="m1-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Отслеживать срок ответа Заказчика (20 р.дней) и реагировать на мотивированный отказ</div>
+              <div class="subtask-deadline ok">20 р.дней с размещения</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="m1-4" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">При получении мотивированного отказа: устранить ошибки в документах за 1 р.день</div>
+              <div class="subtask-deadline red">1 р.день с получения отказа</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="m2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">02</div>
+          <div class="task-name">Отслеживать получение оплаты в течение 7 рабочих дней после подписания документа о приёмке</div>
+          <div class="task-right">
+            <span class="deadline warn">7 р.дней с даты подписания Заказчиком</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'m2')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Заказчик обязан произвести оплату в течение 7 рабочих дней с момента подписания документа о приёмке в ЕИС. Днём исполнения считается дата списания средств с лицевого счёта Заказчика. Финальная оплата производится только после возмещения коммунальных ресурсов. Из суммы оплаты могут быть удержаны пени, штрафы и коммунальные расходы.
+            <br><span class="detail-fine">При просрочке оплаты Заказчиком — Подрядчик вправе требовать пени 1/300 ставки ЦБ за каждый день (п. 8.1.1)</span>
+            <br><span class="detail-tip">Вести реестр отправленных документов с датами и отслеживать сроки оплаты. При задержке — немедленно направить письменное уведомление Заказчику.</span>
+            <div class="detail-ref">п. 3.5, п. 8.1.1</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="m2-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Фиксировать дату размещения и подписания каждого документа о приёмке</div>
+              <div class="subtask-deadline ok">постоянно</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="m2-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">При задержке оплаты свыше 7 р.дней — направить требование об уплате пеней</div>
+              <div class="subtask-deadline amber">на 8-й р.день</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="m3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">03</div>
+          <div class="task-name">Еженедельно вывозить строительный мусор (не реже 1 раза в 7 дней)</div>
+          <div class="task-right">
+            <span class="deadline warn">каждые 7 дней в течение работ</span>
+            <div class="priority-dot med"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'m3')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Отходы вывозятся специально оборудованными транспортными средствами не реже одного раза в 7 дней. Запрещается долгосрочное складирование мусора на объекте. До предъявления работ к приёмке весь мусор должен быть вывезен. Транспортировка — только на объекты, предназначенные для обработки и размещения отходов.
+            <br><span class="detail-fine">5 000 руб. за каждый факт ненадлежащего исполнения (п. 8.2.5б); отказ в приёмке работ</span>
+            <br><span class="detail-tip">Заключить договор с лицензированной организацией по вывозу мусора. Хранить талоны/акты о вывозе.</span>
+            <div class="detail-ref">п. 8.2 Описания объекта закупки</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="m3-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Заключить договор на вывоз строительного мусора с лицензированной компанией</div>
+              <div class="subtask-deadline amber">до начала работ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="m3-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Организовать плановый вывоз мусора каждую неделю</div>
+              <div class="subtask-deadline ok">еженедельно</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="blur-wrap" style="position:relative;min-height:200px">
+        <div class="blur-tasks">
+      <div class="task" data-tid="m4">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">04</div>
+          <div class="task-name">Информировать Заказчика о происшествиях (аварии, НС) в течение 24 часов</div>
+          <div class="task-right">
+            <span class="deadline warn">в течение 24 часов с момента происшествия</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'m4')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик обязан информировать Заказчика обо всех происшествиях на объекте: авариях, угрозах аварии, несчастных случаях с работниками или третьими лицами — в течение 24 часов с момента, когда это стало известно. Также при форс-мажоре — письменное уведомление в 3-дневный срок с приложением подтверждающих документов.
+            <br><span class="detail-fine">5 000 руб. за каждый факт ненадлежащего исполнения (п. 8.2.5б)</span>
+            <br><span class="detail-tip">Определить порядок экстренного оповещения Заказчика и установить прямой контакт с руководством детского сада.</span>
+            <div class="detail-ref">п. 4.2.13, п. 15</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="m4-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Установить экстренный контакт с Заказчиком (телефон ответственного)</div>
+              <div class="subtask-deadline amber">до начала работ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="m4-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">При форс-мажоре — письменное уведомление в 3 дня с подтверждающими документами</div>
+              <div class="subtask-deadline red">3 дня с момента события</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="m5">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">05</div>
+          <div class="task-name">Своевременно оплачивать коммунальные ресурсы по ежемесячным актам</div>
+          <div class="task-right">
+            <span class="deadline warn">10 банковских дней с получения документов от Заказчика</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'m5')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик ежемесячно оплачивает потреблённые электроэнергию, водоснабжение и водоотведение на основании показаний счётчиков или двусторонних актов, выставленных Заказчиком. Оплата — в течение 10 банковских дней с получения документов. Расчёт — по формулам п. 11.1 и 11.2 контракта (по мощности и времени работы инструмента, по числу работников).
+            <br><span class="detail-fine">Оплата финальных работ удерживается до полного возмещения коммунальных ресурсов (п. 3.5)</span>
+            <br><span class="detail-tip">Вести учёт потребления ресурсов самостоятельно, чтобы сверять с выставленными актами. Не допускать накопления задолженности к концу работ.</span>
+            <div class="detail-ref">п. 4.2.19, п. 3.5, п. 3.6, п. 11.1, п. 11.2, Приложение №7</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="m5-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Вести ежемесячный учёт потребления электроэнергии и воды</div>
+              <div class="subtask-deadline ok">ежемесячно</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="m5-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Оплачивать акты Заказчика в течение 10 банк. дней</div>
+              <div class="subtask-deadline amber">10 банк. дней с получения акта</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="m5-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подписывать ежемесячные акты по коммунальным ресурсам совместно с Заказчиком</div>
+              <div class="subtask-deadline ok">ежемесячно</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+        </div>
+        <div class="blur-overlay">
+          <div class="blur-cta-box">
+            <p>Ещё <strong>2</strong> задач скрыто — получите полный план</p>
+            <a href="mailto:tops300@mail.ru?subject=Полный план по контракту">Получить полный план</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group open" data-group="materials">
+    <div class="group-header" onclick="toggleGroup(this)">
+      <div class="group-icon" style="background:rgba(245,158,11,.15)">🏗️</div>
+      <div class="group-title">Закупка материалов и оборудования</div>
+      <div class="group-meta">5 задач</div>
+      <div class="group-progress">
+        <span class="group-prog-text" id="prog-materials">0/5</span>
+        <div class="group-prog-mini"><div class="group-prog-fill" id="progbar-materials" style="width:0%"></div></div>
+      </div>
+      <div class="group-chevron">▼</div>
+    </div>
+    <div class="tasks">
+      <div class="task" data-tid="mat1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">01</div>
+          <div class="task-name">Формировать и хранить комплект сертификатов и паспортов на все применяемые материалы</div>
+          <div class="task-right">
+            <span class="deadline warn">по мере поставки, итог — к сдаче объекта</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'mat1')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            На все применяемые материалы, оборудование и комплектующие необходимо собрать и передать Заказчику документы о качестве: сертификаты соответствия, технические паспорта, гарантийные документы производителей. Без этих документов Заказчик вправе отказать в приёмке работ. Все товарные знаки в документации сопровождаются оговоркой «или эквивалент».
+            <br><span class="detail-fine">Отказ в приёмке работ при отсутствии документации (п. 7.18); штраф 5% цены контракта (п. 8.2.2б)</span>
+            <br><span class="detail-tip">Создать реестр материалов с колонками: наименование, производитель, номер партии, номер сертификата, срок действия сертификата. Обновлять по мере поставок.</span>
+            <div class="detail-ref">п. 4.2.23, п. 7.18, п. 4.2.10</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="mat1-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Создать реестр применяемых материалов с привязкой к видам работ</div>
+              <div class="subtask-deadline amber">до начала работ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="mat1-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">При каждой поставке получать и архивировать сертификат и паспорт</div>
+              <div class="subtask-deadline ok">постоянно</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="mat1-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Сформировать финальный пакет документов на материалы для передачи Заказчику</div>
+              <div class="subtask-deadline amber">до 28.07.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="mat2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">02</div>
+          <div class="task-name">Обеспечить соответствие материалов проектным решениям и ГОСТ/ТУ</div>
+          <div class="task-right">
+            <span class="deadline warn">постоянно в ходе работ</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'mat2')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Используемые оборудование, конструкции и детали должны соответствовать принятым проектным решениям, ГОСТ и техническим условиям (п. 6.2). Применение материалов-эквивалентов допускается, но их аналогичность должна быть подтверждена в соответствии с законодательством. При несоответствии — работы не принимаются и не оплачиваются.
+            <br><span class="detail-fine">Работы с несоответствующими материалами не принимаются (п. 7.19); пени и штрафы по разделу 8</span>
+            <br><span class="detail-tip">При использовании эквивалентов — заранее согласовать замену с Заказчиком письменно. Хранить обоснование эквивалентности.</span>
+            <div class="detail-ref">п. 6.2, п. 4.2.10, п. 3.8</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="mat2-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">При необходимости замены материала — письменно согласовать эквивалент с Заказчиком</div>
+              <div class="subtask-deadline amber">до применения эквивалента</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="mat2-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Проверять соответствие поставленных материалов сметной документации</div>
+              <div class="subtask-deadline ok">при каждой поставке</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="mat3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">03</div>
+          <div class="task-name">Обеспечить сохранность оборудования, не подлежащего демонтажу</div>
+          <div class="task-right">
+            <span class="deadline warn">с момента передачи объекта до окончания работ</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'mat3')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Подрядчик несёт ответственность за сохранность оборудования, не подлежащего демонтажу при проведении работ. После завершения работ необходимо вывезти всё принадлежащее ему оборудование, материалы, конструкции и строительный мусор с территории работ не позднее 10-го рабочего дня после завершения.
+            <br><span class="detail-fine">Полная материальная ответственность за утрату или повреждение оборудования Заказчика (п. 4.2.1)</span>
+            <br><span class="detail-tip">При приёмке объекта составить опись имеющегося оборудования с фотофиксацией. Согласовать с Заказчиком перечень оборудования, не подлежащего демонтажу.</span>
+            <div class="detail-ref">п. 4.2.1, п. 4.2.5, п. 4.2.25</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="mat3-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Составить опись оборудования на объекте при приёмке (фото + список)</div>
+              <div class="subtask-deadline amber">при подписании акта передачи</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="mat3-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Вывезти всё оборудование Подрядчика не позднее 10 р.дней после завершения работ</div>
+              <div class="subtask-deadline ok">до 14.08.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="blur-wrap" style="position:relative;min-height:200px">
+        <div class="blur-tasks">
+      <div class="task" data-tid="mat4">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">04</div>
+          <div class="task-name">Обеспечить бесперебойное электро-, тепло- и водоснабжение учреждения в ходе работ</div>
+          <div class="task-right">
+            <span class="deadline warn">постоянно в ходе работ</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'mat4')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            При выполнении работ Подрядчик не должен нарушать бесперебойное электро-, тепло- и водоснабжение учреждения. Это особенно важно, так как детский сад может работать в период ремонта. Подрядчик обеспечивает безопасность инженерных сетей на переданном объекте.
+            <br><span class="detail-fine">Нарушение повлечёт штраф 5 000 руб. за каждый факт (п. 8.2.5б) и возможную остановку работ</span>
+            <br><span class="detail-tip">До начала каждого этапа, связанного с инженерными сетями, уведомлять Заказчика и согласовывать временное отключение (при необходимости) с минимальным перерывом.</span>
+            <div class="detail-ref">п. 2.2.3</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="mat4-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Разработать план производства работ с учётом режима работы детского сада</div>
+              <div class="subtask-deadline amber">до начала работ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="mat4-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Заблаговременно согласовывать любые отключения сетей с Заказчиком</div>
+              <div class="subtask-deadline ok">не менее чем за 24 часа до отключения</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="mat5">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">05</div>
+          <div class="task-name">Подготовить паспорта систем вентиляции по итогам ПНР</div>
+          <div class="task-right">
+            <span class="deadline ok">до сдачи объекта (до 31.07.2026)</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'mat5')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            По итогам пуско-наладочных работ систем общеобменной вентиляции необходимо оформить и передать Заказчику паспорта систем вентиляции. ПНР должны проводить профильные специалисты с применением поверенных инструментов. Организация должна иметь сертификат завода-производителя на право проведения ПНР. Паспорта — обязательный документ для приёмки.
+            <br><span class="detail-fine">Отказ в приёмке работ без паспортов вентиляции (п. 7.18); штраф 5% цены контракта (п. 8.2.2б)</span>
+            <br><span class="detail-tip">Заказать ПНР и паспортизацию вентиляции у специализированной организации с сертификатом. Предусмотреть в графике работ срок для ПНР и оформления паспортов (не менее 1 недели до сдачи).</span>
+            <div class="detail-ref">п. 4.2.16, п. 4.2.21, п. 4.2.23</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="mat5-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Выбрать организацию для ПНР вентиляции с сертификатом завода-производителя</div>
+              <div class="subtask-deadline amber">до начала монтажа вентиляции</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="mat5-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Провести ПНР систем вентиляции с поверенными инструментами</div>
+              <div class="subtask-deadline ok">до 24.07.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="mat5-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Оформить и передать Заказчику паспорта систем вентиляции</div>
+              <div class="subtask-deadline ok">до 31.07.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+        </div>
+        <div class="blur-overlay">
+          <div class="blur-cta-box">
+            <p>Ещё <strong>2</strong> задач скрыто — получите полный план</p>
+            <a href="mailto:tops300@mail.ru?subject=Полный план по контракту">Получить полный план</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group open" data-group="engineering">
+    <div class="group-header" onclick="toggleGroup(this)">
+      <div class="group-icon" style="background:rgba(59,130,246,.15)">⚡</div>
+      <div class="group-title">Инженерные сети и техприсоединение</div>
+      <div class="group-meta">5 задач</div>
+      <div class="group-progress">
+        <span class="group-prog-text" id="prog-engineering">0/5</span>
+        <div class="group-prog-mini"><div class="group-prog-fill" id="progbar-engineering" style="width:0%"></div></div>
+      </div>
+      <div class="group-chevron">▼</div>
+    </div>
+    <div class="tasks">
+      <div class="task" data-tid="e1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">01</div>
+          <div class="task-name">Подготовить полный пакет исполнительной документации согласно СНиП 3.05.01-85, СП 77.13330.2016</div>
+          <div class="task-right">
+            <span class="deadline ok">до сдачи объекта (до 31.07.2026)</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'e1')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Исполнительная документация (бумажная и электронная) должна соответствовать: СНиП 3.05.01-85, СП 77.13330.2016, РД-11-201-95, ПТЭ ТЭ, СП 124.13330.2012. Пакет включает: общий журнал работ, акты скрытых работ, документы о качестве материалов, акты о приёмке выполненных работ, паспорта систем вентиляции, счёт и счёт-фактуры. Исполнительная документация согласовывается с СПб ГБУ «Служба заказчика Петроградского района».
+            <br><span class="detail-fine">Отказ в приёмке работ без полного пакета исполнительной документации (п. 7.18)</span>
+            <br><span class="detail-tip">Начать формировать исполнительную документацию с первого дня работ, не оставлять на последний момент. Согласовать перечень документов с СПб ГБУ заблаговременно.</span>
+            <div class="detail-ref">п. 4.2.21, п. 4.2.23, п. 7.18</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="e1-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Согласовать с СПб ГБУ перечень требуемой исполнительной документации</div>
+              <div class="subtask-deadline ok">до 15.06.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="e1-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Формировать документацию по мере выполнения каждого вида работ</div>
+              <div class="subtask-deadline ok">постоянно</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="e1-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Передать полный пакет в СПб ГБУ для согласования до извещения об окончании работ</div>
+              <div class="subtask-deadline ok">до 24.07.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="e2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">02</div>
+          <div class="task-name">Выполнить капремонт систем отопления в соответствии с СП 60.13330.2020 и СП 124.13330.2012</div>
+          <div class="task-right">
+            <span class="deadline ok">в соответствии с календарным планом, до 31.07.2026</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'e2')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Капитальный ремонт систем отопления — один из ключевых объектов контракта. Работы выполняются в соответствии с СП 60.13330.2020 «Отопление, вентиляция и кондиционирование», СП 124.13330.2012 «Тепловые сети», СП 7.13130.2013 (требования ПБ). По завершении — испытания системы, оформление актов скрытых работ, паспортов на оборудование.
+            <br><span class="detail-fine">Пени 1/300 ставки ЦБ за каждый день просрочки (п. 8.2.1); штраф 5% цены контракта (п. 8.2.2б)</span>
+            <br><span class="detail-tip">Предусмотреть гидравлические испытания систем отопления с участием представителя технического надзора. Оформить акты испытаний.</span>
+            <div class="detail-ref">п. 1.1, п. 6.1, п. 4.2.21</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="e2-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Выполнить демонтаж существующих систем отопления</div>
+              <div class="subtask-deadline ok">по календарному плану</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="e2-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Произвести монтаж новых систем отопления</div>
+              <div class="subtask-deadline ok">по календарному плану</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="e2-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Провести гидравлические испытания с технадзором, оформить акты</div>
+              <div class="subtask-deadline ok">до 24.07.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="e3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">03</div>
+          <div class="task-name">Выполнить капремонт систем вентиляции с ПНР и паспортизацией</div>
+          <div class="task-right">
+            <span class="deadline ok">в соответствии с календарным планом, до 31.07.2026</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'e3')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Капитальный ремонт систем вентиляции, включая противодымную вентиляцию, выполняется в соответствии с СП 60.13330.2020, СП 7.13130.2013. ПНР систем вентиляции проводят профильные специалисты с сертификатом завода-производителя и поверенными инструментами. По завершении оформляются паспорта вентиляции. Нарушение параметров воздуха в пределах гарантийного срока ведёт к перезапуску гарантийного срока.
+            <br><span class="detail-fine">Пени 1/300 ставки ЦБ за каждый день просрочки; штраф 5% цены контракта. Нарушение санитарных параметров воздуха = перезапуск гарантийного срока (п. 10.2)</span>
+            <br><span class="detail-tip">Заблаговременно заключить договор с профильной организацией на ПНР. Проверить соответствие вентиляции санитарным нормам до сдачи объекта.</span>
+            <div class="detail-ref">п. 1.1, п. 4.2.16, п. 10.2</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="e3-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Выполнить монтаж систем вентиляции согласно проекту</div>
+              <div class="subtask-deadline ok">по календарному плану</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="e3-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Провести ПНР вентиляции, замеры параметров, оформить протоколы</div>
+              <div class="subtask-deadline ok">до 24.07.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="e3-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Оформить и согласовать паспорта вентиляции с технадзором</div>
+              <div class="subtask-deadline ok">до 31.07.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="blur-wrap" style="position:relative;min-height:200px">
+        <div class="blur-tasks">
+      <div class="task" data-tid="e4">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">04</div>
+          <div class="task-name">Выполнить капремонт систем слабых токов</div>
+          <div class="task-right">
+            <span class="deadline ok">в соответствии с календарным планом, до 31.07.2026</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'e4')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Капитальный ремонт систем слабых токов выполняется в соответствии с СП 76.13330.2016 «Электротехнические устройства», ГОСТ 12.1.019-2017 (электробезопасность), ПТЭЭП. Работники должны иметь группу электробезопасности не ниже III. По завершении — проведение испытаний, оформление исполнительной документации.
+            <br><span class="detail-fine">Пени 1/300 ставки ЦБ за каждый день просрочки; штраф 5% цены контракта (п. 8.2.2б)</span>
+            <br><span class="detail-tip">Проверить аттестацию электриков до начала работ. Оформить акты скрытых работ на прокладку кабельных трасс.</span>
+            <div class="detail-ref">п. 1.1, п. 4.2.16, п. 6.1</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="e4-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Выполнить монтаж систем слабых токов согласно проекту</div>
+              <div class="subtask-deadline ok">по календарному плану</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="e4-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Провести испытания систем слабых токов, оформить протоколы</div>
+              <div class="subtask-deadline ok">до 24.07.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="e4-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Оформить акты скрытых работ на кабельные трассы</div>
+              <div class="subtask-deadline ok">по мере закрытия трасс</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="e5">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">05</div>
+          <div class="task-name">Выполнить капремонт помещений (подвал, цоколь, 2-й этаж) согласно СП 71.13330.2017</div>
+          <div class="task-right">
+            <span class="deadline ok">в соответствии с календарным планом, до 31.07.2026</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'e5')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Капитальный ремонт помещений подвала, цоколя и 2-го этажа выполняется в соответствии с СП 71.13330.2017 «Изоляционные и отделочные покрытия», СНиП 3.04.01-87, МДС 12-30.2006. Качество отделочных работ проверяется Заказчиком и техническим надзором. Отделочные работы с несоответствующим качеством не принимаются.
+            <br><span class="detail-fine">Пени 1/300 ставки ЦБ за каждый день просрочки; работы с отклонениями не принимаются (п. 7.19)</span>
+            <br><span class="detail-tip">Особое внимание — подвальным помещениям (гидроизоляция, вентиляция). Согласовывать скрытые работы по гидроизоляции с технадзором.</span>
+            <div class="detail-ref">п. 1.1, п. 6.1, п. 7.19</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="e5-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Выполнить работы в подвале и цоколе согласно сметной документации</div>
+              <div class="subtask-deadline ok">по календарному плану</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="e5-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Выполнить отделочные работы на 2-м этаже</div>
+              <div class="subtask-deadline ok">по календарному плану</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="e5-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Согласовать скрытые работы (гидроизоляция, утепление) с технадзором</div>
+              <div class="subtask-deadline ok">до закрытия каждого слоя</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+        </div>
+        <div class="blur-overlay">
+          <div class="blur-cta-box">
+            <p>Ещё <strong>2</strong> задач скрыто — получите полный план</p>
+            <a href="mailto:tops300@mail.ru?subject=Полный план по контракту">Получить полный план</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group open" data-group="handover">
+    <div class="group-header" onclick="toggleGroup(this)">
+      <div class="group-icon" style="background:rgba(16,185,129,.15)">🏁</div>
+      <div class="group-title">Сдача объекта</div>
+      <div class="group-meta">6 задач</div>
+      <div class="group-progress">
+        <span class="group-prog-text" id="prog-handover">0/6</span>
+        <div class="group-prog-mini"><div class="group-prog-fill" id="progbar-handover" style="width:0%"></div></div>
+      </div>
+      <div class="group-chevron">▼</div>
+    </div>
+    <div class="tasks">
+      <div class="task" data-tid="h1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">01</div>
+          <div class="task-name">Предоставить обеспечение гарантийных обязательств (5% НМЦК = 559 984,36 руб.) до приёмки</div>
+          <div class="task-right">
+            <span class="deadline ok">до подписания акта приёмки (до 31.07.2026)</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'h1')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            После выполнения работ в полном объёме, но ДО оформления акта о приёмке, Подрядчик обязан предоставить обеспечение гарантийных обязательств в размере 5% от НМЦК = 559 984,36 руб. в виде независимой банковской гарантии (ст. 45 ФЗ-44) или денежного взноса на счёт Заказчика. Без обеспечения оформление акта приёмки невозможно. Средства возвращаются через 30 дней после истечения 60-месячного гарантийного срока.
+            <br><span class="detail-fine">Без обеспечения гарантийных обязательств акт приёмки не оформляется и оплата не производится (п. 10.4, п. 10.5)</span>
+            <br><span class="detail-tip">В назначении платежа обязательно: «ВР 510, предмет контракта, номер извещения, обеспечение гарантийных обязательств». Заблаговременно оформить гарантию (минимум за 5-7 дней до сдачи).</span>
+            <div class="detail-ref">п. 10.4, п. 10.5, п. 10.15, п. 10.16, п. 10.18</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="h1-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Оформить банковскую гарантию на 559 984,36 руб. или перечислить деньги на счёт Заказчика</div>
+              <div class="subtask-deadline amber">за 5-7 дней до сдачи</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="h1-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Передать гарантию/платёжное поручение Заказчику до подписания акта</div>
+              <div class="subtask-deadline ok">до 31.07.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="h2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">02</div>
+          <div class="task-name">Сформировать и разместить в ЕИС документ о приёмке в течение 3 р.дней после завершения работ</div>
+          <div class="task-right">
+            <span class="deadline ok">3 р.дня с завершения (до ~05.08.2026)</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'h2')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            После завершения всех работ Подрядчик не позднее дня размещения документов в ЕИС письменно извещает Заказчика об окончании работ и направляет в СПб ГБУ «Служба заказчика» полный комплект документов для проверки. Документ о приёмке формируется в ЕИС и подписывается ЭЦП. Полный перечень передаваемой документации указывается в извещении.
+            <br><span class="detail-fine">Без документа о приёмке в ЕИС Заказчик не может начать процедуру приёмки и оплаты работ</span>
+            <br><span class="detail-tip">Заблаговременно уточнить в ЕИС все необходимые поля и прикладываемые документы. Дата отгрузки в документе о приёмке должна соответствовать фактической дате сдачи.</span>
+            <div class="detail-ref">п. 7.5, п. 7.6, п. 4.2.22 (п. 436)</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="h2-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Письменно известить Заказчика об окончании работ</div>
+              <div class="subtask-deadline amber">в день завершения работ</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="h2-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Направить полный комплект документов в СПб ГБУ для контроля</div>
+              <div class="subtask-deadline amber">одновременно с извещением</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="h2-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Разместить документ о приёмке в ЕИС с ЭЦП</div>
+              <div class="subtask-deadline amber">в течение 3 р.дней с завершения работ</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="h3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">03</div>
+          <div class="task-name">Передать полный пакет исполнительной документации Заказчику</div>
+          <div class="task-right">
+            <span class="deadline ok">одновременно с уведомлением об окончании работ</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'h3')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            При сдаче объекта Подрядчик передаёт: общий журнал работ (1 экз.), акты освидетельствования скрытых работ, документы о качестве материалов (сертификаты, паспорта), акты приёмки выполненных работ, счёт и счёт-фактуры, паспорта систем вентиляции, исполнительную документацию (бумажная + электронная версия). Документация согласована с СПб ГБУ. Без полного пакета Заказчик вправе отказать в приёмке.
+            <br><span class="detail-fine">Отказ в приёмке при отсутствии документации (п. 7.18); штраф 5% цены контракта (п. 8.2.2б)</span>
+            <br><span class="detail-tip">Составить итоговый чеклист передаваемых документов. Передавать документацию с описью под подпись представителя Заказчика.</span>
+            <div class="detail-ref">п. 4.2.23, п. 7.18, п. 4.2.21</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="h3-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Сформировать полный пакет документации (бумага + электронная версия)</div>
+              <div class="subtask-deadline ok">до 28.07.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="h3-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Согласовать исполнительную документацию в СПб ГБУ «Служба заказчика»</div>
+              <div class="subtask-deadline ok">до 30.07.2026</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="h3-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Передать документацию Заказчику с описью под подпись</div>
+              <div class="subtask-deadline ok">до 31.07.2026</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="blur-wrap" style="position:relative;min-height:200px">
+        <div class="blur-tasks">
+      <div class="task" data-tid="h4">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">04</div>
+          <div class="task-name">Устранить замечания по результатам приёмки в сроки, указанные в акте дефектов</div>
+          <div class="task-right">
+            <span class="deadline ok">в сроки по акту, не позднее 31.07.2026 или по согласованию</span>
+            <div class="priority-dot high"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'h4')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            При обнаружении недостатков в ходе приёмки составляется двусторонний акт с перечнем дефектов и сроками устранения. Подрядчик устраняет все выявленные недостатки за свой счёт. При ошибках в документах — устранение в течение 1 рабочего дня. Устранение недостатков не освобождает от уплаты неустойки.
+            <br><span class="detail-fine">Пени 1/300 ставки ЦБ за каждый день просрочки устранения; штраф 5% цены контракта</span>
+            <br><span class="detail-tip">Держать «летучую бригаду» для оперативного устранения замечаний на этапе приёмки. Не приступать к продолжению работ до подписания акта об устранении.</span>
+            <div class="detail-ref">п. 7.15, п. 7.16, п. 7.17, п. 4.2.23</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="h4-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подписать акт о недостатках и изучить перечень замечаний</div>
+              <div class="subtask-deadline red">в день составления акта</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="h4-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Устранить все замечания в сроки, установленные в акте</div>
+              <div class="subtask-deadline amber">по срокам в акте</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="h4-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Подписать акт об устранении недостатков и повторно уведомить Заказчика</div>
+              <div class="subtask-deadline amber">после устранения</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="h5">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">05</div>
+          <div class="task-name">Вывезти строительный мусор и освободить объект не позднее 10 р.дней после завершения работ</div>
+          <div class="task-right">
+            <span class="deadline ok">не позднее 10 р.дней с завершения работ (~14.08.2026)</span>
+            <div class="priority-dot med"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'h5')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Не позднее 10-го рабочего дня со дня завершения работ Подрядчик обязан освободить объект от своего оборудования, материалов, инструментов и строительного мусора. Мусор вывозится на полигоны в соответствии с законодательством об отходах. Запрещается оставлять мусор на объекте.
+            <br><span class="detail-fine">5 000 руб. за каждый факт ненадлежащего исполнения (п. 8.2.5б)</span>
+            <br><span class="detail-tip">Запланировать финальный вывоз мусора и оборудования на последние 2 дня работ, не откладывать на период после приёмки.</span>
+            <div class="detail-ref">п. 4.2.8, п. 4.2.25</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="h5-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Вывезти всё оборудование, инструменты и материалы Подрядчика</div>
+              <div class="subtask-deadline ok">не позднее 10 р.дней после завершения</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="h5-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Вывезти строительный мусор на полигон, получить документы о вывозе</div>
+              <div class="subtask-deadline ok">не позднее 10 р.дней после завершения</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="task" data-tid="h6">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-num">06</div>
+          <div class="task-name">Исполнять гарантийные обязательства в течение 60 месяцев с даты приёмки</div>
+          <div class="task-right">
+            <span class="deadline ok">60 месяцев с даты подписания акта приёмки</span>
+            <div class="priority-dot med"></div>
+            <button class="status-btn todo" onclick="cycleStatus(event,'h6')">● Не начато</button>
+          </div>
+        </div>
+        
+        <div class="task-body">
+          <div class="detail-box">
+            Гарантийный срок — 60 месяцев с даты подписания сторонами документа о приёмке. В течение срока Подрядчик обязан безвозмездно устранять выявленные дефекты в течение 30 дней с подписания акта о дефектах (п. 10.12). При нарушении санитарных параметров воздуха вентиляции — гарантийный срок на этот элемент перезапускается. Обеспечение гарантийных обязательств (559 984,36 руб.) удерживается до окончания гарантийного срока.
+            <br><span class="detail-fine">Пени 1/300 ставки ЦБ за каждый день просрочки устранения гарантийных дефектов (п. 8.2.1); Заказчик вправе привлечь третьих лиц за счёт Подрядчика (п. 10.13)</span>
+            <br><span class="detail-tip">Установить порядок обработки гарантийных обращений. Реагировать на письменные уведомления Заказчика в течение 10 дней для составления акта дефектов.</span>
+            <div class="detail-ref">п. 2.2.4, п. 10.1, п. 10.10, п. 10.11, п. 10.12, п. 10.13</div>
+          </div>
+          <div class="subtasks-wrap"><div class="subtasks-title">Подзадачи</div>
+          <div class="subtask" data-sid="h6-1" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Определить порядок и контактное лицо для гарантийных обращений</div>
+              <div class="subtask-deadline ok">до сдачи объекта</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="h6-2" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">При получении гарантийного уведомления — составить акт дефектов в течение 10 дней</div>
+              <div class="subtask-deadline amber">10 дней с уведомления</div>
+            </div>
+          </div>
+          <div class="subtask" data-sid="h6-3" onclick="toggleSub(this)">
+            <div class="subtask-check"></div>
+            <div class="subtask-content">
+              <div class="subtask-name">Устранить гарантийные дефекты в течение 30 дней с подписания акта</div>
+              <div class="subtask-deadline amber">30 дней с акта дефектов</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+        </div>
+        <div class="blur-overlay">
+          <div class="blur-cta-box">
+            <p>Ещё <strong>3</strong> задач скрыто — получите полный план</p>
+            <a href="mailto:tops300@mail.ru?subject=Полный план по контракту">Получить полный план</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+<section class="footer-cta">
+  <h2>Нужен такой инструмент для вашего контракта?</h2>
+  <p></p>
+  <a class="cta-big" href="mailto:tops300@mail.ru?subject=Разбор контракта">Получить полный план →</a>
+</section>
+
+<script>
+const DEADLINE     = "2026-07-31";
+const CONTRACT_SUM = 11199687.13;
+const CB_RATE      = 21.0;
+const GROUP_TASK_IDS = [["start", ["s1", "s2", "s3", "s4", "s5", "s6"]], ["permit", ["p1", "p2", "p3", "p4", "p5"]], ["subcontract", ["sc1", "sc2", "sc3", "sc4", "sc5"]], ["monthly", ["m1", "m2", "m3", "m4", "m5"]], ["materials", ["mat1", "mat2", "mat3", "mat4", "mat5"]], ["engineering", ["e1", "e2", "e3", "e4", "e5"]], ["handover", ["h1", "h2", "h3", "h4", "h5", "h6"]]];
+const GROUP_LABELS   = {"start": "\ud83d\ude80 \u0421\u0442\u0430\u0440\u0442 \u0438 \u043c\u043e\u0431\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "permit": "\ud83d\udcb0 \u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f \u0438 \u0430\u0432\u0430\u043d\u0441", "subcontract": "\ud83e\udd1d \u0421\u0443\u0431\u043f\u043e\u0434\u0440\u044f\u0434 \u0438 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u043a\u0430\u0447\u0435\u0441\u0442\u0432\u0430", "monthly": "\ud83d\udcca \u0415\u0436\u0435\u043c\u0435\u0441\u044f\u0447\u043d\u0430\u044f \u043f\u0440\u0438\u0451\u043c\u043a\u0430 \u0438 \u043e\u043f\u043b\u0430\u0442\u0430", "materials": "\ud83c\udfd7\ufe0f \u0417\u0430\u043a\u0443\u043f\u043a\u0430 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u043e\u0432 \u0438 \u043e\u0431\u043e\u0440\u0443\u0434\u043e\u0432\u0430\u043d\u0438\u044f", "engineering": "\u26a1 \u0418\u043d\u0436\u0435\u043d\u0435\u0440\u043d\u044b\u0435 \u0441\u0435\u0442\u0438 \u0438 \u0442\u0435\u0445\u043f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435", "handover": "\ud83c\udfc1 \u0421\u0434\u0430\u0447\u0430 \u043e\u0431\u044a\u0435\u043a\u0442\u0430"};
+const URGENT_TODAY   = [{"dot": "red", "title": "\u041f\u043e\u0434\u043f\u0438\u0441\u0430\u0442\u044c \u0430\u043a\u0442 \u043f\u0440\u0438\u0451\u043c\u0430-\u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u043e\u0431\u044a\u0435\u043a\u0442\u0430 \u0441\u043e\u0432\u043c\u0435\u0441\u0442\u043d\u043e \u0441 \u0421\u041f\u0431 \u0413\u0411\u0423 \u00ab\u0421\u043b\u0443\u0436\u0431\u0430 \u0437\u0430\u043a\u0430\u0437\u0447\u0438\u043a\u0430\u00bb", "group": "\u0421\u0442\u0430\u0440\u0442 \u0438 \u043c\u043e\u0431\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "tid": "s1"}, {"dot": "red", "title": "\u041d\u0430\u0437\u043d\u0430\u0447\u0438\u0442\u044c \u043f\u0440\u0438\u043a\u0430\u0437\u043e\u043c \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0433\u043e \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u0440\u0430\u0431\u043e\u0442, \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0445 \u0437\u0430 \u041f\u0411 \u0438 \u0422\u0411", "group": "\u0421\u0442\u0430\u0440\u0442 \u0438 \u043c\u043e\u0431\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "tid": "s2"}, {"dot": "red", "title": "\u041f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u0438\u0442\u044c \u0417\u0430\u043a\u0430\u0437\u0447\u0438\u043a\u0443 \u0441\u043f\u0438\u0441\u043e\u043a \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a\u043e\u0432, \u0430\u0432\u0442\u043e\u0442\u0440\u0430\u043d\u0441\u043f\u043e\u0440\u0442\u0430 \u0438 \u0441\u043f\u0435\u0446\u0442\u0435\u0445\u043d\u0438\u043a\u0438", "group": "\u0421\u0442\u0430\u0440\u0442 \u0438 \u043c\u043e\u0431\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "tid": "s3"}, {"dot": "red", "title": "\u0417\u0430\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0434\u043e\u0433\u043e\u0432\u043e\u0440 \u043e \u0432\u043e\u0437\u043c\u0435\u0449\u0435\u043d\u0438\u0438 \u043a\u043e\u043c\u043c\u0443\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u0443\u0441\u043b\u0443\u0433 (\u041f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u21167)", "group": "\u0421\u0442\u0430\u0440\u0442 \u0438 \u043c\u043e\u0431\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "tid": "s4"}, {"dot": "amber", "title": "\u041d\u0430\u0437\u043d\u0430\u0447\u0438\u0442\u044c \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0433\u043e \u0437\u0430 \u043e\u0446\u0435\u043d\u043a\u0443 \u043f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u0440\u0438\u0441\u043a\u043e\u0432 (\u041f\u0440\u0438\u043a\u0430\u0437 \u041c\u0422 \u2116656\u043d)", "group": "\u0421\u0442\u0430\u0440\u0442 \u0438 \u043c\u043e\u0431\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0438", "tid": "s5"}, {"dot": "red", "title": "\u041f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u0438\u0442\u044c \u0438 \u0443\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u043d\u044b\u0439 \u043f\u043b\u0430\u043d (\u0433\u0440\u0430\u0444\u0438\u043a) \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f \u0440\u0430\u0431\u043e\u0442", "group": "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f \u0438 \u0430\u0432\u0430\u043d\u0441", "tid": "p1"}, {"dot": "red", "title": "\u041e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0442\u044c \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u0435 \u0438\u0441\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442\u0430 (10% \u043e\u0442 \u0446\u0435\u043d\u044b = 1 119 969 \u0440\u0443\u0431.)", "group": "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f \u0438 \u0430\u0432\u0430\u043d\u0441", "tid": "p3"}, {"dot": "red", "title": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c \u043d\u0430\u043b\u0438\u0447\u0438\u0435 \u0430\u0442\u0442\u0435\u0441\u0442\u0430\u0446\u0438\u0438 \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a\u043e\u0432 \u043f\u043e \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u0438 (\u0433\u0440\u0443\u043f\u043f\u0430 \u2265 III)", "group": "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u044f \u0438 \u0430\u0432\u0430\u043d\u0441", "tid": "p5"}];
+const CHECKLIST_ITEMS = ["\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0435 \u0444\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0433\u043e \u0445\u043e\u0434\u0430 \u0440\u0430\u0431\u043e\u0442 \u0443\u0442\u0432\u0435\u0440\u0436\u0434\u0451\u043d\u043d\u043e\u043c\u0443 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u043d\u043e\u043c\u0443 \u043f\u043b\u0430\u043d\u0443 (\u041f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u21164)", "\u0412\u044b\u043f\u043e\u043b\u043d\u0438\u0442\u044c \u0432\u044b\u0432\u043e\u0437 \u0441\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0433\u043e \u043c\u0443\u0441\u043e\u0440\u0430 (\u043d\u0435 \u0440\u0435\u0436\u0435 1 \u0440\u0430\u0437\u0430 \u0432 7 \u0434\u043d\u0435\u0439, \u043f. 8.2 \u041e\u043f\u0438\u0441\u0430\u043d\u0438\u044f \u043e\u0431\u044a\u0435\u043a\u0442\u0430)", "\u0417\u0430\u0444\u0438\u043a\u0441\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0436\u0443\u0440\u043d\u0430\u043b\u0435 \u0440\u0430\u0431\u043e\u0442 \u0432\u0441\u0435 \u0432\u0438\u0434\u044b \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u043d\u044b\u0445 \u0440\u0430\u0431\u043e\u0442 \u0437\u0430 \u043d\u0435\u0434\u0435\u043b\u044e", "\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u043d\u0430\u043b\u0438\u0447\u0438\u0435 \u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d\u0438\u0439 \u0417\u0430\u043a\u0430\u0437\u0447\u0438\u043a\u0430 \u043d\u0430 \u0432\u0441\u0435 \u0432\u0438\u0434\u044b \u0440\u0430\u0431\u043e\u0442 \u0442\u0435\u043a\u0443\u0449\u0435\u0439 \u043d\u0435\u0434\u0435\u043b\u0438 (\u043f. 4.2.12)", "\u0421\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u0442\u044c \u0441 \u0417\u0430\u043a\u0430\u0437\u0447\u0438\u043a\u043e\u043c \u043f\u043b\u0430\u043d \u0448\u0443\u043c\u043d\u044b\u0445 \u0440\u0430\u0431\u043e\u0442 \u043d\u0430 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0443\u044e \u043d\u0435\u0434\u0435\u043b\u044e (\u043f. 2.2.3)", "\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u043a\u043e\u043c\u043f\u043b\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u044c \u0438 \u0430\u043a\u0442\u0443\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0432 \u043d\u0430 \u043f\u043e\u0441\u0442\u0443\u043f\u0438\u0432\u0448\u0438\u0435 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044b (\u043f. 4.2.10)", "\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u043f\u043e\u0434\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0430\u043a\u0442\u043e\u0432 \u043e\u0441\u0432\u0438\u0434\u0435\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u043e\u0432\u0430\u043d\u0438\u044f \u0441\u043a\u0440\u044b\u0442\u044b\u0445 \u0440\u0430\u0431\u043e\u0442 \u0434\u043e \u0437\u0430\u043a\u0440\u044b\u0442\u0438\u044f \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u043c \u0441\u043b\u043e\u0435\u043c (\u043f. 4.1.4)", "\u041f\u0440\u043e\u0432\u0435\u0441\u0442\u0438 \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0442\u0430\u0436 \u043f\u043e \u041e\u0422 \u0438 \u0422\u0411 \u0434\u043b\u044f \u043d\u043e\u0432\u044b\u0445 \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a\u043e\u0432, \u0432\u044b\u0448\u0435\u0434\u0448\u0438\u0445 \u043d\u0430 \u043e\u0431\u044a\u0435\u043a\u0442 (\u043f. 4.2.13)", "\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c \u0441\u043f\u0438\u0441\u043e\u043a \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a\u043e\u0432 \u0438 \u0442\u0440\u0430\u043d\u0441\u043f\u043e\u0440\u0442\u0430, \u043f\u0435\u0440\u0435\u0434\u0430\u043d\u043d\u044b\u0439 \u0417\u0430\u043a\u0430\u0437\u0447\u0438\u043a\u0443, \u0435\u0441\u043b\u0438 \u0441\u043e\u0441\u0442\u0430\u0432 \u0438\u0437\u043c\u0435\u043d\u0438\u043b\u0441\u044f (\u043f. 2.2.3)", "\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0435 \u0437\u0430\u0433\u0440\u043e\u043c\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u044d\u0432\u0430\u043a\u0443\u0430\u0446\u0438\u043e\u043d\u043d\u044b\u0445 \u043f\u0443\u0442\u0435\u0439 \u0438 \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u0435 \u044d\u043b\u0435\u043a\u0442\u0440\u043e-, \u0442\u0435\u043f\u043b\u043e-, \u0432\u043e\u0434\u043e\u0441\u043d\u0430\u0431\u0436\u0435\u043d\u0438\u044f \u0443\u0447\u0440\u0435\u0436\u0434\u0435\u043d\u0438\u044f (\u043f. 2.2.3)", "\u041a\u043e\u043d\u0442\u0440\u043e\u043b\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043e\u043f\u043b\u0430\u0442\u0443 \u043a\u043e\u043c\u043c\u0443\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u0440\u0435\u0441\u0443\u0440\u0441\u043e\u0432 \u043f\u043e \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u043d\u044b\u043c \u0417\u0430\u043a\u0430\u0437\u0447\u0438\u043a\u043e\u043c \u0430\u043a\u0442\u0430\u043c (\u043f. 4.2.19)", "\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u0433\u043e\u0442\u043e\u0432\u043d\u043e\u0441\u0442\u044c \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u043e\u0432 \u0434\u043b\u044f \u0444\u043e\u0440\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f \u0435\u0436\u0435\u043c\u0435\u0441\u044f\u0447\u043d\u043e\u0433\u043e \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430 \u043e \u043f\u0440\u0438\u0451\u043c\u043a\u0435 \u0432 \u0415\u0418\u0421 (\u043f. 7.5)"];
+
+const KEY  = 'dashboard_state';
+const KEY2 = 'dashboard_mgmt';
+function loadState() { try { return JSON.parse(localStorage.getItem(KEY))  || {}; } catch(e) { return {}; } }
+function loadMgmt()  { try { return JSON.parse(localStorage.getItem(KEY2)) || {issues:[],pres:[],subs:[],checklist:{},customSubs:{}}; } catch(e) { return {issues:[],pres:[],subs:[],checklist:{},customSubs:{}}; } }
+function saveState() { try { localStorage.setItem(KEY,  JSON.stringify(state)); } catch(e) {} }
+function saveMgmt()  { try { localStorage.setItem(KEY2, JSON.stringify(mgmt));  } catch(e) {} }
+let state = loadState();
+let mgmt  = loadMgmt();
+
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// Countdown
+function updateCountdown() {
+  const d = new Date(DEADLINE + 'T00:00:00');
+  const diff = d - new Date();
+  const days = diff > 0 ? Math.floor(diff/86400000) : 0;
+  const txt = diff > 0 ? days + ' дн до сдачи' : 'СДАН';
+  const el1 = document.getElementById('countdownMini');
+  const el2 = document.getElementById('daysLeft');
+  if (el1) el1.textContent = txt;
+  if (el2) el2.textContent = diff > 0 ? days + ' ДН' : 'СДАН';
+}
+
+// Today date
+function updateTodayDate() {
+  const el = document.getElementById('todayDate');
+  if (el) el.textContent = new Date().toLocaleDateString('ru-RU', {day:'numeric',month:'long',year:'numeric'});
+}
+
+// Group toggle
+function toggleGroup(h) { h.parentElement.classList.toggle('open'); }
+function toggleTask(h)  { h.parentElement.classList.toggle('expanded'); }
+
+// Status cycle
+const statusMap = {
+  todo:       { label:'▶ В работе',  cls:'inprogress' },
+  inprogress: { label:'✓ Выполнено', cls:'done'       },
+  done:       { label:'● Не начато', cls:'todo'       },
+};
+function cycleStatus(e, tid) {
+  e.stopPropagation();
+  const btn = e.target;
+  const cur = btn.classList.contains('inprogress') ? 'inprogress' : btn.classList.contains('done') ? 'done' : 'todo';
+  const next = statusMap[cur];
+  btn.className = 'status-btn ' + next.cls;
+  btn.textContent = next.label;
+  const task = btn.closest('.task');
+  if (next.cls === 'done') task.classList.add('done-task'); else task.classList.remove('done-task');
+  state['task_' + tid] = next.cls;
+  saveState();
+  updateGroupProgress();
+  renderTodayItems();
+}
+
+// Built-in subtask toggle
+function toggleSub(el) {
+  el.classList.toggle('checked');
+  state['sub_' + el.dataset.sid] = el.classList.contains('checked');
+  saveState();
+}
+
+// Responsible
+function saveResponsible(input) {
+  state['resp_' + input.dataset.tid] = input.value;
+  saveState();
+}
+
+// Group progress
+function updateGroupProgress() {
+  GROUP_TASK_IDS.forEach(([gid, tids]) => {
+    const done = tids.filter(tid => state['task_' + tid] === 'done').length;
+    const pct  = tids.length ? Math.round(done / tids.length * 100) : 0;
+    const pt = document.getElementById('prog-' + gid);
+    const pb = document.getElementById('progbar-' + gid);
+    if (pt) pt.textContent = done + '/' + tids.length;
+    if (pb) { pb.style.width = pct + '%'; pb.className = 'group-prog-fill ' + (pct===100?'green':pct>50?'amber':'green'); }
+  });
+  const grid = document.getElementById('progressGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  GROUP_TASK_IDS.forEach(([gid, tids]) => {
+    const done = tids.filter(tid => state['task_' + tid] === 'done').length;
+    const pct  = tids.length ? Math.round(done/tids.length*100) : 0;
+    const cls  = pct===100?'green':pct>50?'amber':'red';
+    const card = document.createElement('div');
+    card.className = 'prog-card';
+    card.innerHTML = `<div class="prog-name">${GROUP_LABELS[gid]||gid}</div>
+      <div class="prog-bar-wrap"><div class="prog-bar ${cls}" style="width:${pct}%"></div></div>
+      <div class="prog-nums"><span style="color:var(--${cls==='red'?'muted2':cls==='amber'?'accent':'success'})">${done}/${tids.length}</span><span style="color:var(--muted)">${pct}%</span></div>`;
+    grid.appendChild(card);
+  });
+}
+
+// Today urgent items
+function renderTodayItems() {
+  const container = document.getElementById('todayItems');
+  if (!container) return;
+  container.innerHTML = '';
+  URGENT_TODAY.forEach(item => {
+    if (state['task_' + item.tid] === 'done') return;
+    const el = document.createElement('div');
+    el.className = 'today-item';
+    el.onclick = () => { const t = document.querySelector('[data-tid="'+item.tid+'"]'); if(t) t.scrollIntoView({behavior:'smooth',block:'center'}); };
+    el.innerHTML = `<div class="today-dot ${item.dot}"></div><div class="today-item-text"><strong>${esc(item.title)}</strong><div class="today-item-group">${esc(item.group)}</div></div>`;
+    container.appendChild(el);
+  });
+  if (!container.children.length) container.innerHTML = '<div style="color:var(--success);font-size:14px;padding:.5rem 0">✅ Все срочные задачи выполнены!</div>';
+}
+
+// Fine calc
+function updateFine() {
+  const slider = document.getElementById('fineSlider');
+  if (!slider) return;
+  const days = parseInt(slider.value);
+  document.getElementById('finedays').textContent = days + ' ДНЕЙ';
+  const daily = CONTRACT_SUM * CB_RATE / 300;
+  const total = Math.round(daily * days);
+  document.getElementById('fineResult').textContent  = total.toLocaleString('ru-RU') + ' ₽';
+  document.getElementById('fineBreak').innerHTML =
+    `<span>${days} дней</span> × 1/300 × ${(CB_RATE*100).toFixed(0)}% × ${CONTRACT_SUM.toLocaleString('ru-RU')} ₽ = <span>${Math.round(daily).toLocaleString('ru-RU')} ₽/день</span>`
+    + (days>=7 ? `<br>За 30 дн: <span>${Math.round(daily*30).toLocaleString('ru-RU')} ₽</span> · За 90 дн: <span>${Math.round(daily*90).toLocaleString('ru-RU')} ₽</span>` : '');
+}
+
+// Inject responsible + add-subtask into each task body
+function injectTaskExtras() {
+  document.querySelectorAll('.task').forEach(task => {
+    const tid = task.dataset.tid;
+    if (!tid) return;
+    const body = task.querySelector('.task-body');
+    if (!body) return;
+    // Responsible
+    const rr = document.createElement('div');
+    rr.className = 'responsible-row';
+    const saved = state['resp_' + tid] || '';
+    rr.innerHTML = `<span class="responsible-label">Ответственный</span><input class="responsible-input" placeholder="ФИО / должность" value="${esc(saved)}" data-tid="${tid}" oninput="saveResponsible(this)">`;
+    body.insertBefore(rr, body.firstChild);
+    // Add subtask
+    const sw = body.querySelector('.subtasks-wrap') || (() => { const w=document.createElement('div'); w.className='subtasks-wrap'; const t=document.createElement('div'); t.className='subtasks-title'; t.textContent='Подзадачи'; w.appendChild(t); body.appendChild(w); return w; })();
+    const ab = document.createElement('button');
+    ab.className = 'add-subtask-btn';
+    ab.textContent = '＋ Добавить подзадачу';
+    ab.onclick = () => af.classList.toggle('open');
+    const af = document.createElement('div');
+    af.className = 'add-subtask-form';
+    af.innerHTML = `<input id="asn-${tid}" placeholder="Название подзадачи"><input id="asd-${tid}" placeholder="Срок (напр: до 15.06.2026)">
+      <div class="form-row"><button class="form-btn primary" onclick="saveCustomSub('${tid}')">Добавить</button><button class="form-btn cancel" onclick="document.getElementById('asf-${tid}').classList.remove('open')">Отмена</button></div>`;
+    af.id = 'asf-' + tid;
+    sw.appendChild(ab); sw.appendChild(af);
+    renderCustomSubs(tid);
+  });
+}
+
+function saveCustomSub(tid) {
+  const n = document.getElementById('asn-'+tid); const d = document.getElementById('asd-'+tid);
+  if (!n || !n.value.trim()) return;
+  if (!mgmt.customSubs[tid]) mgmt.customSubs[tid] = [];
+  mgmt.customSubs[tid].push({ id: Date.now(), name: n.value.trim(), dl: (d||{value:''}).value.trim(), done: false });
+  saveMgmt(); n.value=''; if(d) d.value='';
+  document.getElementById('asf-'+tid).classList.remove('open');
+  renderCustomSubs(tid);
+}
+
+function renderCustomSubs(tid) {
+  const task = document.querySelector('[data-tid="'+tid+'"]'); if (!task) return;
+  task.querySelectorAll('.subtask.custom-subtask').forEach(el=>el.remove());
+  const sw = task.querySelector('.subtasks-wrap'); if (!sw) return;
+  const ab = sw.querySelector('.add-subtask-btn');
+  (mgmt.customSubs[tid]||[]).forEach(sub => {
+    const el = document.createElement('div');
+    el.className = 'subtask custom-subtask' + (sub.done?' checked':'');
+    el.innerHTML = `<div class="subtask-check"></div><div class="subtask-content"><div class="subtask-name">${esc(sub.name)}</div>${sub.dl?`<div class="subtask-deadline amber">${esc(sub.dl)}</div>`:''}</div><button class="subtask-del" onclick="delCustomSub(event,'${tid}',${sub.id})">✕</button>`;
+    el.onclick = e => { if(e.target.classList.contains('subtask-del')) return; el.classList.toggle('checked'); const s=(mgmt.customSubs[tid]||[]).find(s=>s.id===sub.id); if(s) s.done=el.classList.contains('checked'); saveMgmt(); };
+    if (ab) sw.insertBefore(el, ab); else sw.appendChild(el);
+  });
+}
+
+function delCustomSub(e, tid, id) {
+  e.stopPropagation();
+  mgmt.customSubs[tid] = (mgmt.customSubs[tid]||[]).filter(s=>s.id!==id);
+  saveMgmt(); renderCustomSubs(tid);
+}
+
+// Management section toggle
+function toggleMgmt(id) { document.getElementById('card-'+id).classList.toggle('open'); }
+
+// Modal
+let modalMode=null, modalEditId=null;
+const mFields = {
+  sub: () => `<label>Название</label><input id="mf-name" placeholder="ООО «…»">
+    <label>Вид работ</label><input id="mf-work" placeholder="Монтаж сетей">
+    <label>Сумма ₽</label><input id="mf-sum" type="number" placeholder="0">
+    <label>% выполнения</label><input id="mf-pct" type="number" min="0" max="100" placeholder="0">
+    <label>Статус</label><select id="mf-status"><option value="active">В работе</option><option value="done">Завершён</option><option value="paused">Приостановлен</option></select>`,
+  issue: () => `<label>Описание</label><textarea id="mf-desc" placeholder="Описание проблемы..."></textarea>
+    <label>Ответственный</label><input id="mf-owner" placeholder="ФИО / должность">
+    <label>Срок</label><input id="mf-dl" placeholder="до 15.06.2026">
+    <label>Статус</label><select id="mf-status"><option value="open">Открыта</option><option value="inwork">В работе</option><option value="closed">Закрыта</option></select>`,
+  pres: () => `<label>Орган / инспектор</label><input id="mf-organ" placeholder="Госстройнадзор РТ">
+    <label>Суть</label><textarea id="mf-desc" placeholder="Описание нарушения..."></textarea>
+    <label>Дата</label><input id="mf-date" type="date">
+    <label>Срок устранения</label><input id="mf-dl" type="date">
+    <label>Ответственный</label><input id="mf-owner" placeholder="ФИО">
+    <label>Статус</label><select id="mf-status"><option value="open">Открыто</option><option value="process">Устраняется</option><option value="done">Устранено</option></select>`,
+};
+const mTitles = { sub:'Субподрядчик', issue:'Проблема / риск', pres:'Предписание' };
+
+function openModal(mode, editId) {
+  modalMode=mode; modalEditId=editId||null;
+  document.getElementById('modal-title').textContent = (editId!==undefined?'Редактировать: ':'Добавить: ') + mTitles[mode];
+  document.getElementById('modal-fields').innerHTML = mFields[mode]();
+  if (editId!==undefined) {
+    const arr = mode==='issue'?mgmt.issues:mode==='pres'?mgmt.pres:mgmt.subs;
+    const item = arr.find(i=>i.id===editId);
+    if (item) {
+      ['name','work','sum','pct','desc','owner','dl','date','organ','status'].forEach(f => {
+        const el=document.getElementById('mf-'+f); if(el&&item[f]!==undefined) el.value=item[f];
+      });
+    }
+  }
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+function closeModalOutside(e) { if(e.target===document.getElementById('modal-overlay')) closeModal(); }
+
+function g(id) { const el=document.getElementById(id); return el?el.value:''; }
+
+function submitModal() {
+  const id = modalEditId!==null ? modalEditId : Date.now();
+  if (modalMode==='issue') {
+    const item={id, desc:g('mf-desc'), owner:g('mf-owner'), dl:g('mf-dl'), status:g('mf-status'), created:new Date().toLocaleDateString('ru-RU')};
+    if (!item.desc) return;
+    const idx=mgmt.issues.findIndex(i=>i.id===id);
+    if(idx>=0) mgmt.issues[idx]=item; else mgmt.issues.push(item);
+    saveMgmt(); renderIssues();
+  } else if (modalMode==='pres') {
+    const item={id, organ:g('mf-organ'), desc:g('mf-desc'), date:g('mf-date'), dl:g('mf-dl'), owner:g('mf-owner'), status:g('mf-status')};
+    if (!item.desc) return;
+    const idx=mgmt.pres.findIndex(i=>i.id===id);
+    if(idx>=0) mgmt.pres[idx]=item; else mgmt.pres.push(item);
+    saveMgmt(); renderPres();
+  } else if (modalMode==='sub') {
+    const item={id, name:g('mf-name'), work:g('mf-work'), sum:parseFloat(g('mf-sum'))||0, pct:Math.min(100,Math.max(0,parseInt(g('mf-pct'))||0)), status:g('mf-status')};
+    if (!item.name) return;
+    const idx=mgmt.subs.findIndex(i=>i.id===id);
+    if(idx>=0) mgmt.subs[idx]=item; else mgmt.subs.push(item);
+    saveMgmt(); renderSubs();
+  }
+  closeModal();
+}
+
+function renderIssues() {
+  const list=document.getElementById('issues-list'); if(!list) return;
+  const open=mgmt.issues.filter(i=>i.status!=='closed').length;
+  document.getElementById('issues-count').textContent=open+' открытых';
+  if (!mgmt.issues.length) { list.innerHTML='<div style="color:var(--muted);font-size:13px">Проблем нет. Так держать.</div>'; return; }
+  list.innerHTML=mgmt.issues.map(item=>`
+    <div class="issue-card"><div>
+      <div class="issue-title">${esc(item.desc)}</div>
+      <div class="issue-meta">
+        <span class="issue-badge ${item.status}">${item.status==='open'?'🔴 Открыта':item.status==='inwork'?'🟡 В работе':'✅ Закрыта'}</span>
+        ${item.owner?`<span>👤 ${esc(item.owner)}</span>`:''}
+        ${item.dl?`<span>📅 до ${esc(item.dl)}</span>`:''}
+      </div></div>
+      <div class="issue-actions">
+        <button class="icon-btn" onclick="openModal('issue',${item.id})">✏️</button>
+        <button class="icon-btn del" onclick="delItem('issue',${item.id})">✕</button>
+      </div></div>`).join('');
+}
+
+function renderPres() {
+  const tb=document.getElementById('pres-tbody'); if(!tb) return;
+  document.getElementById('pres-count').textContent=mgmt.pres.length+' предписаний';
+  if (!mgmt.pres.length) { tb.innerHTML='<tr><td colspan="7" style="color:var(--muted);text-align:center;padding:1.5rem">Предписаний нет</td></tr>'; return; }
+  const now=new Date();
+  tb.innerHTML=mgmt.pres.map(item=>{
+    const ov=item.dl&&item.status!=='done'&&new Date(item.dl)<now;
+    return `<tr>
+      <td>${item.date?new Date(item.date).toLocaleDateString('ru-RU'):'—'}</td>
+      <td>${esc(item.organ||'—')}</td>
+      <td style="color:var(--text)">${esc(item.desc)}</td>
+      <td class="${ov?'pres-overdue':''}">${item.dl?new Date(item.dl).toLocaleDateString('ru-RU')+(ov?' ⚠️':''):'—'}</td>
+      <td>${esc(item.owner||'—')}</td>
+      <td><span class="pres-status ${item.status}" onclick="cyclePres(${item.id})">${item.status==='open'?'Открыто':item.status==='process'?'Устраняется':'Устранено'}</span></td>
+      <td><button class="icon-btn" onclick="openModal('pres',${item.id})" style="margin-right:4px">✏️</button><button class="icon-btn del" onclick="delItem('pres',${item.id})">✕</button></td>
+    </tr>`;
+  }).join('');
+}
+function cyclePres(id) {
+  const item=mgmt.pres.find(i=>i.id===id); if(!item) return;
+  item.status={open:'process',process:'done',done:'open'}[item.status]||'open';
+  saveMgmt(); renderPres();
+}
+
+function renderSubs() {
+  const list=document.getElementById('sub-list'); if(!list) return;
+  document.getElementById('subs-count').textContent=mgmt.subs.length+' компаний';
+  if (!mgmt.subs.length) { list.innerHTML='<div style="color:var(--muted);font-size:13px">Нет субподрядчиков.</div>'; return; }
+  const sl={active:'🟡 В работе',done:'✅ Завершён',paused:'⏸ Приостановлен'};
+  list.innerHTML=mgmt.subs.map(item=>`
+    <div class="sub-card">
+      <div class="sub-name">${esc(item.name)}</div>
+      <div class="sub-work">${esc(item.work||'')} · ${sl[item.status]||''}</div>
+      <div class="sub-bar-wrap"><div class="sub-bar" style="width:${item.pct}%"></div></div>
+      ${item.sum?`<div style="font-size:12px;color:var(--muted)">Сумма: ${item.sum.toLocaleString('ru-RU')} ₽</div>`:''}
+      <div class="sub-footer">
+        <div class="sub-pct">${item.pct}%</div>
+        <div class="sub-actions">
+          <button class="icon-btn" onclick="openModal('sub',${item.id})">✏️</button>
+          <button class="icon-btn del" onclick="delItem('sub',${item.id})">✕</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function delItem(type, id) {
+  if (!confirm('Удалить запись?')) return;
+  if (type==='issue') mgmt.issues=mgmt.issues.filter(i=>i.id!==id);
+  if (type==='pres')  mgmt.pres=mgmt.pres.filter(i=>i.id!==id);
+  if (type==='sub')   mgmt.subs=mgmt.subs.filter(i=>i.id!==id);
+  saveMgmt();
+  if (type==='issue') renderIssues();
+  if (type==='pres')  renderPres();
+  if (type==='sub')   renderSubs();
+}
+
+// Weekly checklist
+function getWeekKey() {
+  const n=new Date(), j=new Date(n.getFullYear(),0,1);
+  return n.getFullYear()+'_w'+Math.ceil(((n-j)/86400000+j.getDay()+1)/7);
+}
+function renderChecklist() {
+  const wk=getWeekKey();
+  if (mgmt.checklist._week && mgmt.checklist._week!==wk) { mgmt.checklist={_week:wk}; saveMgmt(); }
+  if (!mgmt.checklist._week) { mgmt.checklist._week=wk; saveMgmt(); }
+  const grid=document.getElementById('checklist-grid'); if(!grid) return;
+  grid.innerHTML=CHECKLIST_ITEMS.map((txt,i)=>{
+    const ch=!!mgmt.checklist['c'+i];
+    return `<div class="check-item${ch?' checked':''}" onclick="toggleCheck(${i})"><div class="check-box"></div><div class="check-text">${esc(txt)}</div></div>`;
+  }).join('');
+  updateChecklistCount();
+}
+function toggleCheck(i) { mgmt.checklist['c'+i]=!mgmt.checklist['c'+i]; saveMgmt(); renderChecklist(); }
+function resetChecklist() { if(!confirm('Сбросить чеклист?')) return; mgmt.checklist={_week:getWeekKey()}; saveMgmt(); renderChecklist(); }
+function updateChecklistCount() {
+  const done=CHECKLIST_ITEMS.filter((_,i)=>mgmt.checklist['c'+i]).length;
+  const t=CHECKLIST_ITEMS.length;
+  const el1=document.getElementById('checklist-count'); if(el1) el1.textContent=done+'/'+t;
+  const el2=document.getElementById('checklist-progress'); if(el2) el2.textContent=done+' / '+t+' выполнено';
+}
+
+// Restore state
+function restoreState() {
+  Object.keys(state).forEach(key => {
+    if (key.startsWith('task_')) {
+      const tid=key.replace('task_',''), status=state[key];
+      const task=document.querySelector('[data-tid="'+tid+'"]'); if(!task) return;
+      const btn=task.querySelector('.status-btn'); if(!btn) return;
+      btn.className='status-btn '+status;
+      btn.textContent=status==='done'?'✓ Выполнено':status==='inprogress'?'▶ В работе':'● Не начато';
+      if(status==='done') task.classList.add('done-task');
+    }
+    if (key.startsWith('sub_')) {
+      const sid=key.replace('sub_','');
+      if(state[key]) { const el=document.querySelector('[data-sid="'+sid+'"]'); if(el) el.classList.add('checked'); }
+    }
+  });
+}
+
+// Init
+updateCountdown();
+updateTodayDate();
+const fsl=document.getElementById('fineSlider');
+if(fsl){fsl.addEventListener('input',updateFine);updateFine();}
+restoreState();
+injectTaskExtras();
+updateGroupProgress();
+renderTodayItems();
+renderIssues();
+renderPres();
+renderSubs();
+renderChecklist();
+setInterval(updateCountdown, 60000);
+
+</script>
+</body>
+</html>
